@@ -53,6 +53,10 @@ DISTFILES += \
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 DEFINES += APP_BUILDNUM=\\\"$$RELEASE\\\"
 
+!exists($$PWD/.env) {
+    error( ".env needs to be defined in the project root" )
+}
+
 DOTENV = "$$cat($$PWD/.env)"
 for(var, $$list($$DOTENV)) {
     DEFINES += $$var
@@ -61,27 +65,7 @@ for(var, $$list($$DOTENV)) {
 
 message($$DEFINES)
 
-#APP_ID = $$(APP_ID)
-#message("APP_ID = $$APP_ID")
-
-#APP_KEY = $$(APP_KEY)
-#message("APP_KEY = $$APP_KEY")
-
-#DECRYPT_KEY = $$(DECRYPT_KEY)
-#message("DECRYPT_KEY = $$DECRYPT_KEY")
-
-#DEFINES += APP_ID
-#DEFINES += APP_KEY
-#DEFINES += DECRYPT_KEY
-
-#equals( APP_ID, "" ) {
-#    error( "APP_ID not defined" )
-#}
-
-#equals( APP_KEY, "" ) {
-#    error( "APP_KEY not defined" )
-#}
-
-#equals( DECRYPT_KEY, "" ) {
-#    error( "DECRYPT_KEY not defined" )
-#}
+REQUIRED = $$find(DEFINES, "APP_ID") $$find(DEFINES, "APP_KEY") $$find(DEFINES, "DECRYPT_KEY")
+!count(REQUIRED, 3) {
+   error( "invalid env variables" )
+}
