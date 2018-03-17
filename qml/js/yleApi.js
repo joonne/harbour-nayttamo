@@ -4,6 +4,7 @@
 
 var apiUrl = "https://external.api.yle.fi/v1";
 
+// .env -> qmake -> DEFINES -> setContextProperty
 var credentials = "app_id=" + appId + "&app_key=" + appKey;
 
 var programsUrl = "/programs/items.json?" + credentials;
@@ -31,22 +32,21 @@ var mapPrograms = function(programs) {
     return programs.map(function(program) {
         return {
             id: program.id,
-            title: program.title.fi,
-            description: program.description.fi,
-            mediaId: program.publicationEvent.media.id,
+            title: program.title && program.title.fi,
+            description: program.description && program.description.fi,
+            mediaId: program.publicationEvent && program.publicationEvent.media && program.publicationEvent.media.id,
             image: program.image,
             seasonNumber: program.partOfSeason && program.partOfSeason.seasonNumber
                           ? program.partOfSeason.seasonNumber
                           : "",
             episodeNumber: program.episodeNumber ? program.episodeNumber : "",
-            seriesId: program.partOfSeason.id,
+            seriesId: program.partOfSeason && program.partOfSeason.id,
          };
     });
 }
 
 function getProgramById(id) {
-    console.log(apiUrl + "/programs/items/" + id + ".json?" + appId)
-    return HTTP.get(apiUrl + "/programs/items/" + id + ".json?" + appId)
+    return HTTP.get(apiUrl + "/programs/items/" + id + ".json?" + credentials)
         .then(function(program) {
             console.log(JSON.stringify(program));
             return program;
@@ -67,7 +67,7 @@ function getProgramsByCategoryId(categoryId, limit, offset) {
 }
 
 function getCategories() {
-    var url = apiUrl + '/programs/categories.json?' + appId;
+    var url = apiUrl + categoriesUrl;
     return HTTP.get(url)
         .then(function(res) {
             return res.data.map(function(category) {
@@ -80,24 +80,31 @@ function getCategories() {
         });
 }
 
+function decryptUrl(url) {
+    return CryptoJS.decrypt(url, decryptKey);
+}
+
 function getMediaUrl(programId, mediaId) {
     var url = apiUrl + mediaUrl + "&program_id=" + programId + "&media_id=" + mediaId + "&protocol=HLS";
     return HTTP.get(url)
         .then(function(res) {
             return res.data[0].url;
         })
-        .then(function(url) {
-            return CryptoJS.decrypt(url, decryptKey);
-        });
+        .then(decryptUrl);
 }
 
 function search(text) {
     var url = apiUrl + programsUrl + '&availability=ondemand&mediaobject=video' + '&q=' + text;
+    console.log('requesting', url);
     return HTTP.get(url)
         .then(function(response) {
             return filterAvailablePrograms(response.data);
         })
-        .then(mapPrograms);
+        .then(mapPrograms)
+        .catch(function(error) {
+            console.log('search error', error);
+            throw error;
+        })
 }
 
 function reportUsage(programId, mediaId) {
