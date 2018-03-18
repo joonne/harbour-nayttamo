@@ -38,7 +38,7 @@ Page {
 
             TextField {
                 id: genre
-                label: qsTr("Kuvaus")
+                label: qsTr("Description")
                 width: programoverviewpage.width
                 text: "ASDASDASDASD"
                 color: Theme.secondaryColor

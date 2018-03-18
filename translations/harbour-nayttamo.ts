@@ -4,7 +4,7 @@
 <context>
     <name>CategoriesPage</name>
     <message>
-        <source>Kategoriat</source>
+        <source>Categories</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -18,60 +18,68 @@
 <context>
     <name>FirstPage</name>
     <message>
-        <source>Kategoriat</source>
+        <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Haku</source>
+        <source>Categories</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Nykyiset lähetykset</source>
+        <source>Current Broadcasts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Näytä ohjelman tiedot</source>
+        <source>Show program info</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ProgramOverviewPage</name>
     <message>
-        <source>Kuvaus</source>
+        <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ProgramsPage</name>
     <message>
-        <source>Ohjelmat</source>
+        <source>Programs</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SearchPage</name>
     <message>
-        <source>Etsi ohjelmaa</source>
+        <source>Season %1 Episode %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Tänne ilmestyy tavaraa kun etsit jotain</source>
+        <source>Season %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Kausi %1 Jakso %2</source>
+        <source>Episode %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Kausi %1</source>
+        <source>Season - Episode -</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Jakso %1</source>
+        <source>Search for a program</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Kausi - Jakso -</source>
+        <source>Season</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Jakso</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Here will be stuff when you search for something</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -23,11 +23,11 @@ Page {
         // PullDownMenu and PushUpMenu must be declared in SilicaFlickable, SilicaListView or SilicaGridView
         PullDownMenu {
             MenuItem {
-                text: qsTr("Haku")
+                text: qsTr("Search")
                 onClicked: pageStack.push(Qt.resolvedUrl("SearchPage.qml"))
             }
             MenuItem {
-                text: qsTr("Kategoriat")
+                text: qsTr("Categories")
                 onClicked: pageStack.push(Qt.resolvedUrl("CategoriesPage.qml"))
             }
         }
@@ -37,7 +37,7 @@ Page {
             model: []
             anchors.fill: parent
             header: PageHeader {
-                title: qsTr("Nykyiset lähetykset")
+                title: qsTr("Current Broadcasts")
             }
             delegate: ListItem {
                 id: listItem
@@ -46,7 +46,7 @@ Page {
 
                 menu: ContextMenu {
                     MenuItem {
-                        text: qsTr("Näytä ohjelman tiedot")
+                        text: qsTr("Show program info")
                         onClicked: {
                             pageStack.push(Qt.resolvedUrl("ProgramOverviewPage.qml"), {
                                                "program": modelData

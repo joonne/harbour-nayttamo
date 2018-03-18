@@ -29,7 +29,7 @@ Page {
         model: []
         anchors.fill: parent
         header: PageHeader {
-            title: qsTr("Ohjelmat")
+            title: qsTr("Programs")
         }
         delegate: ListItem {
             id: listItem

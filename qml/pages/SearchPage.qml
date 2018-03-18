@@ -25,13 +25,13 @@ Page {
 
     function formatProgramDetails(seasonNumber, episodeNumber) {
         if (seasonNumber && episodeNumber) {
-            return qsTr("Kausi %1 Jakso %2").arg(seasonNumber).arg(episodeNumber)
+            return qsTr("Season %1 Episode %2").arg(seasonNumber).arg(episodeNumber)
         } else if (seasonNumber) {
-            return qsTr("Kausi %1").arg(seasonNumber)
+            return qsTr("Season %1").arg(seasonNumber)
         } else if (episodeNumber) {
-            return qsTr("Jakso %1").arg(episodeNumber)
+            return qsTr("Episode %1").arg(episodeNumber)
         }
-        return qsTr("Kausi - Jakso -")
+        return qsTr("Season - Episode -")
     }
 
     Timer {
@@ -47,7 +47,7 @@ Page {
             top: searchpage.top
             topMargin: (Theme.paddingLarge * 4)
         }
-        placeholderText: qsTr("Etsi ohjelmaa")
+        placeholderText: qsTr("Search for a program")
         EnterKey.onClicked: {
             search(text)
             focus = false
@@ -95,7 +95,7 @@ Page {
 
                 Label {
                     id: title
-                    text: modelData.title + " Kausi " + modelData.seasonNumber + " Jakso " + modelData.episodeNumber
+                    text: modelData.title + " " + qsTr("Season") + " " + modelData.seasonNumber + " " + qsTr("Jakso") + " " + modelData.episodeNumber
                     width: listItem.width - (2 * Theme.paddingLarge)
                     truncationMode: TruncationMode.Fade
                     color: Theme.primaryColor
@@ -117,7 +117,7 @@ Page {
 
         ViewPlaceholder {
             enabled: listView.count === 0
-            text: qsTr("Tänne ilmestyy tavaraa kun etsit jotain")
+            text: qsTr("Here will be stuff when you search for something")
             anchors.centerIn: listView
 
         }
