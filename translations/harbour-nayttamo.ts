@@ -47,9 +47,36 @@
         <source>Programs</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Previous page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next page</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SearchPage</name>
+    <message>
+        <source>Search for a program</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Here will be stuff when you search for something</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Previous page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next page</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>yleApi</name>
     <message>
         <source>Season %1 Episode %2</source>
         <translation type="unfinished"></translation>
@@ -60,26 +87,6 @@
     </message>
     <message>
         <source>Episode %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Season - Episode -</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Search for a program</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Season</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Jakso</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Here will be stuff when you search for something</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
