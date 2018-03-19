@@ -7,10 +7,11 @@ Page {
     id: page
 
     property var category: ({})
+    property int offset: 0
+    property int limit: 25
 
-    Component.onCompleted: {
-        console.log(category)
-        YleApi.getProgramsByCategoryId(category.id)
+    function getPrograms() {
+        YleApi.getProgramsByCategoryId(category.id, limit, offset)
             .then(function(programs) {
                 console.log('programs', programs)
                 listView.model = programs
@@ -19,6 +20,11 @@ Page {
                 console.log('error', error)
                 listView.model = []
             })
+    }
+
+    Component.onCompleted: {
+        console.log(category)
+        getPrograms();
     }
 
     // The effective value will be restricted by ApplicationWindow.allowedOrientations
@@ -31,33 +37,33 @@ Page {
         header: PageHeader {
             title: qsTr("Programs")
         }
-        delegate: ListItem {
-            id: listItem
-            contentHeight: column.height + Theme.paddingMedium
-            contentWidth: listView.width
 
-            Column {
-                id: column
-                x: Theme.horizontalPageMargin
-
-                Image {
-                    id: programThumbnail
-                    sourceSize.width: parent.width
-                    anchors.left: parent.left
-                    source: modelData.image && modelData.image.id && modelData.image.available
-                            ? "http://images.cdn.yle.fi/image/upload/" + modelData.image.id + ".jpg"
-                            : null
-                }
-
-                Label {
-                    id: title
-                    text: modelData.title
+        PullDownMenu {
+            MenuItem {
+                text: qsTr("Previous page")
+                enabled: offset > 0
+                onClicked: {
+                    console.log("Previous page")
+                    offset -= limit;
+                    getPrograms();
                 }
             }
-            onClicked: pageStack.push(Qt.resolvedUrl("PlayerPage.qml"), {
-                                          "program": modelData
-                                      })
         }
+
+        PushUpMenu {
+            MenuItem {
+                text: qsTr("Next page")
+                enabled: listView.count === limit
+                onClicked: {
+                    console.log("Next page", listView.count, offset, limit)
+                    offset += limit;
+                    getPrograms();
+                }
+            }
+        }
+
+        delegate: ProgramDelegate {}
+
         VerticalScrollDecorator {}
     }
 }

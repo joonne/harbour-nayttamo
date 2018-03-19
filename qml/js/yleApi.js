@@ -28,12 +28,54 @@ var filterAvailablePrograms = function(programs) {
     }, []);
 }
 
+function formatProgramDetails(seasonNumber, episodeNumber) {
+    if (seasonNumber && episodeNumber) {
+        return qsTr("Season %1 Episode %2").arg(seasonNumber).arg(episodeNumber);
+    } else if (seasonNumber) {
+        return qsTr("Season %1").arg(seasonNumber);
+    } else if (episodeNumber) {
+        return qsTr("Episode %1").arg(episodeNumber);
+    }
+    return "";
+}
+
+function zeropad(str, size) {
+    var tmpStr = str;
+    while (tmpStr.length < size) {
+        tmpStr = "0" + tmpStr;
+    }
+    return tmpStr;
+}
+
+function parseDuration(duration) {//PT1H58M45S
+    if (!duration) {
+        return "";
+    }
+    var durationStr = duration.substr(2);
+    var hourSepIndex = durationStr.indexOf("H");
+    var minSepIndex = durationStr.indexOf("M");
+    var secSepIndex = durationStr.indexOf("S");
+    var hour = durationStr.substr(0, hourSepIndex);
+    var min = durationStr.substring(hourSepIndex+1, minSepIndex);
+    var sec = zeropad(durationStr.substr(minSepIndex+1, secSepIndex >= 0 ? secSepIndex-minSepIndex-1 : secSepIndex).substr(0, 2), 2);
+    return hour ? ""+hour+":"+zeropad(min, 2)+":"+sec : ""+zeropad(min, 1)+":"+sec;
+}
+
+function parseTime(timeStr) {//2014-01-23T21:00:07+02:00
+    if (!timeStr) {
+        return "";
+    }
+    return Qt.formatDateTime(new Date(timeStr));
+}
+
 var mapPrograms = function(programs) {
     return programs.map(function(program) {
         return {
             id: program.id,
             title: program.title && program.title.fi,
             description: program.description && program.description.fi,
+            duration: parseDuration(program.duration),
+            startTime: program.publicationEvent && program.publicationEvent.startTime && parseTime(program.publicationEvent.startTime),
             mediaId: program.publicationEvent && program.publicationEvent.media && program.publicationEvent.media.id,
             image: program.image,
             seasonNumber: program.partOfSeason && program.partOfSeason.seasonNumber
@@ -58,7 +100,7 @@ function getProgramById(id) {
 }
 
 function getProgramsByCategoryId(categoryId, limit, offset) {
-    var url = apiUrl + programsUrl + '&category=' + categoryId + '&availability=ondemand&mediaobject=video';
+    var url = apiUrl + programsUrl + '&category=' + categoryId + '&availability=ondemand&mediaobject=video&offset='+offset+'&limit='+limit;
     return HTTP.get(url)
         .then(function(response) {
             return filterAvailablePrograms(response.data);
@@ -93,8 +135,8 @@ function getMediaUrl(programId, mediaId) {
         .then(decryptUrl);
 }
 
-function search(text) {
-    var url = apiUrl + programsUrl + '&availability=ondemand&mediaobject=video' + '&q=' + text;
+function search(text, limit, offset) {
+    var url = apiUrl + programsUrl + '&availability=ondemand&mediaobject=video' + '&q=' + text + '&offset=' + offset + '&limit=' + limit;
     console.log('requesting', url);
     return HTTP.get(url)
         .then(function(response) {

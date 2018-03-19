@@ -5,6 +5,8 @@ import "../js/yleApi.js" as YleApi
 
 Page {
     id: searchpage
+    property int offset: 0
+    property int limit: 25
 
     // The effective value will be restricted by ApplicationWindow.allowedOrientations
     allowedOrientations: Orientation.All
@@ -14,24 +16,13 @@ Page {
     }
 
     function search(text) {
-        YleApi.search(searchField.text)
+        YleApi.search(searchField.text, limit, offset)
             .then(function(programs) {
                 listView.model = programs
             })
             .catch(function() {
                 listView.model = []
             })
-    }
-
-    function formatProgramDetails(seasonNumber, episodeNumber) {
-        if (seasonNumber && episodeNumber) {
-            return qsTr("Season %1 Episode %2").arg(seasonNumber).arg(episodeNumber)
-        } else if (seasonNumber) {
-            return qsTr("Season %1").arg(seasonNumber)
-        } else if (episodeNumber) {
-            return qsTr("Episode %1").arg(episodeNumber)
-        }
-        return qsTr("Season - Episode -")
     }
 
     Timer {
@@ -70,46 +61,31 @@ Page {
         clip: true
         model: []
 
-        delegate: ListItem {
-            id: listItem
-            contentHeight: column.height + Theme.paddingMedium
-            contentWidth: listView.width
-            onClicked: {
-                pageStack.push(Qt.resolvedUrl("PlayerPage.qml"), {
-                                   "program": modelData
-                               })
-            }
-
-            Column {
-                id: column
-                x: Theme.paddingLarge
-
-                Image {
-                    id: programThumbnail
-                    sourceSize.width: parent.width
-                    anchors.left: parent.left
-                    source: modelData.image && modelData.image.id && modelData.image.available
-                            ? "http://images.cdn.yle.fi/image/upload/" + modelData.image.id + ".jpg"
-                            : null
-                }
-
-                Label {
-                    id: title
-                    text: modelData.title + " " + qsTr("Season") + " " + modelData.seasonNumber + " " + qsTr("Jakso") + " " + modelData.episodeNumber
-                    width: listItem.width - (2 * Theme.paddingLarge)
-                    truncationMode: TruncationMode.Fade
-                    color: Theme.primaryColor
-                }
-
-                Label {
-                    id: episode
-                    text: formatProgramDetails(modelData.seasonNumber, modelData.episodeNumber)
-                    width: listItem.width - (2 * Theme.paddingLarge)
-                    truncationMode: TruncationMode.Fade
-                    color: Theme.primaryColor
+        PullDownMenu {
+            MenuItem {
+                text: qsTr("Previous page")
+                enabled: offset > 0
+                onClicked: {
+                    console.log("Previous page")
+                    offset -= limit;
+                    getPrograms();
                 }
             }
         }
+
+        PushUpMenu {
+            MenuItem {
+                text: qsTr("Next page")
+                enabled: listView.count === limit
+                onClicked: {
+                    console.log("Next page", listView.count, offset, limit)
+                    offset += limit;
+                    search(searchField.text);
+                }
+            }
+        }
+
+        delegate: ProgramDelegate{}
 
         VerticalScrollDecorator {
             id: decorator
@@ -119,7 +95,6 @@ Page {
             enabled: listView.count === 0
             text: qsTr("Here will be stuff when you search for something")
             anchors.centerIn: listView
-
         }
     }
 }

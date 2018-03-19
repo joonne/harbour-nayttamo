@@ -58,17 +58,20 @@ Page {
                 Column {
                     id: column
                     x: Theme.horizontalPageMargin
+                    width: page.width - 2 * Theme.horizontalPageMargin
 
                     Image {
                         id: programThumbnail
                         sourceSize.width: parent.width
                         anchors.left: parent.left
                         source: modelData.image && modelData.image.id && modelData.image.available
-                                ? "http://images.cdn.yle.fi/image/upload/" + modelData.image.id + ".jpg"
+                                ? "http://images.cdn.yle.fi/image/upload/w_" + parent.width + ",h_" + Math.floor(parent.width * 16 / 9) + ",c_fit/" + modelData.image.id + ".jpg"
                                 : null
                     }
 
                     Label {
+                        width: parent.width
+                        truncationMode: TruncationMode.Fade
                         text: modelData.title
                     }
                 }
