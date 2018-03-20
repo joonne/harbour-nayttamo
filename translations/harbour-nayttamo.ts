@@ -35,6 +35,13 @@
     </message>
 </context>
 <context>
+    <name>PlayerPage</name>
+    <message>
+        <source>Error loading media</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ProgramOverviewPage</name>
     <message>
         <source>Description</source>
