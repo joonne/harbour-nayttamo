@@ -42,6 +42,13 @@
     </message>
 </context>
 <context>
+    <name>ProgramDelegate</name>
+    <message>
+        <source>Show program info</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ProgramOverviewPage</name>
     <message>
         <source>Released</source>
