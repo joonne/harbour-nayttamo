@@ -36,7 +36,7 @@ CONFIG += sailfishapp_i18n
 # following TRANSLATIONS line. And also do not forget to
 # modify the localized app name in the the .desktop file.
 TRANSLATIONS += translations/harbour-nayttamo-fi.ts \
-                translations/harbour-nayttamo-sv.ts
+    translations/harbour-nayttamo-sv.ts
 
 DISTFILES += \
     qml/js/http.js \

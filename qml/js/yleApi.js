@@ -130,6 +130,7 @@ function getMediaUrl(programId, mediaId) {
     var url = apiUrl + mediaUrl + "&program_id=" + programId + "&media_id=" + mediaId + "&protocol=HLS";
     return HTTP.get(url)
         .then(function(res) {
+            console.log(JSON.stringify(res));
             return res.data[0].url;
         })
         .then(decryptUrl);
