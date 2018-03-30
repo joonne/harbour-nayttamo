@@ -3,10 +3,19 @@ import Sailfish.Silica 1.0
 
 import "../js/yleApi.js" as YleApi
 
-BackgroundItem {
+ListItem {
     id: listItem
-    width: ListView.view.width
-    height: Math.ceil(9*contentWidth/3/16)
+    contentWidth: ListView.view.width
+    contentHeight: Theme.itemSizeLarge
+
+    menu: ContextMenu {
+        MenuItem {
+            text: qsTr("Show program info")
+            onClicked: pageStack.push(Qt.resolvedUrl("ProgramOverviewPage.qml"), {
+                                          "program": modelData
+                                      })
+        }
+    }
 
     Item {
         height: parent.height - 2 * Theme.paddingSmall
@@ -17,7 +26,7 @@ BackgroundItem {
             id: img
             color: "black"
             height: parent.height
-            width: Math.ceil(height*16/9)
+            width: Math.ceil((height * 16) / 9)
             Image {
                 x: 0
                 y: 0

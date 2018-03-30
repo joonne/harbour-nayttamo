@@ -42,10 +42,29 @@
     </message>
 </context>
 <context>
+    <name>ProgramDelegate</name>
+    <message>
+        <source>Show program info</source>
+        <translation type="unfinished">Näytä ohjelman tiedot</translation>
+    </message>
+</context>
+<context>
     <name>ProgramOverviewPage</name>
     <message>
-        <source>Description</source>
-        <translation>Kuvaus</translation>
+        <source>Released</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Play</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Episode</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

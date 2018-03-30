@@ -73,6 +73,7 @@ var mapPrograms = function(programs) {
         return {
             id: program.id,
             title: program.title && program.title.fi,
+            itemTitle: program.itemTitle && program.itemTitle.fi,
             description: program.description && program.description.fi,
             duration: parseDuration(program.duration),
             startTime: program.publicationEvent && program.publicationEvent.startTime && parseTime(program.publicationEvent.startTime),
