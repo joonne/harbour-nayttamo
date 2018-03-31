@@ -7,10 +7,15 @@ Page {
     id: page
 
     Component.onCompleted: {
+        updateCover(qsTr("Current Broadcasts"), "", "")
         YleApi.getCurrentBroadcasts()
             .then(function(broadcasts) {
                 listView.model = broadcasts
             })
+    }
+
+    onVisibleChanged: {
+        if (visible) updateCover(qsTr("Current Broadcasts"), "", "")
     }
 
     // The effective value will be restricted by ApplicationWindow.allowedOrientations

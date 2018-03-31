@@ -47,6 +47,12 @@ function zeropad(str, size) {
     return tmpStr;
 }
 
+function formatTime(milliseconds) {
+    var minutes = zeropad(String(Math.floor((milliseconds / 1000) / 60)), 2);
+    var seconds = zeropad(String(Math.floor((milliseconds / 1000) % 60)), 2);
+    return minutes + ":" + seconds;
+}
+
 function parseDuration(duration) {//PT1H58M45S
     if (!duration) {
         return "";

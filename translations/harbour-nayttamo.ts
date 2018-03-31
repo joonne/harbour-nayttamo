@@ -11,22 +11,22 @@
 <context>
     <name>CoverPage</name>
     <message>
-        <source>My Cover</source>
+        <source>Näyttämö</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>FirstPage</name>
     <message>
+        <source>Current Broadcasts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Current Broadcasts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -38,6 +38,10 @@
     <name>PlayerPage</name>
     <message>
         <source>Error loading media</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Now playing</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -66,6 +70,10 @@
         <source>Episode</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Program overview</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ProgramsPage</name>
@@ -79,6 +87,10 @@
     </message>
     <message>
         <source>Next page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Category</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -98,6 +110,10 @@
     </message>
     <message>
         <source>Next page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

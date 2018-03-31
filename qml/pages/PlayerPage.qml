@@ -15,14 +15,18 @@ Page {
 
     Connections {
         target: Qt.application
-        onActiveChanged: !Qt.application.active ? video.pause() : video.play()
+        onActiveChanged: !Qt.application.active ? mediaPlayer.pause() : mediaPlayer.play()
+    }
+
+    onVisibleChanged: {
+        if (visible) updateCover(qsTr("Now playing"), program.title, program.itemTitle)
     }
 
     function initialize() {
         YleApi.getMediaUrl(program.id, program.mediaId)
             .then(function(url) {
-                video.source = url
-                video.play()
+                mediaPlayer.source = url
+                mediaPlayer.play()
                 YleApi.reportUsage(program.id, program.mediaId)
             })
             .catch(function(error) {
@@ -31,17 +35,11 @@ Page {
             })
     }
 
-    function formatTime(milliseconds) {
-        var minutes = YleApi.zeropad(String(Math.floor((milliseconds / 1000) / 60)), 2)
-        var seconds = YleApi.zeropad(String(Math.floor((milliseconds / 1000) % 60)), 2)
-        return minutes + ":" + seconds
-    }
-
     // The effective value will be restricted by ApplicationWindow.allowedOrientations
     allowedOrientations: Orientation.All
 
     ScreenBlank {
-        enabled: video.playbackState === MediaPlayer.PlayingState
+        enabled: mediaPlayer.playbackState === MediaPlayer.PlayingState
     }
 
     Timer {
@@ -51,13 +49,18 @@ Page {
         repeat: false
     }
 
-    Video {
-        id: video
+    VideoOutput {
+        id: videoOutput
         width : parent.width
         height : parent.height
         focus: true
+        source: mediaPlayer
 
         Component.onCompleted: initialize()
+        Component.onDestruction: {
+            mediaPlayer.stop()
+            mediaPlayer.source = ""
+        }
 
         MouseArea {
             anchors.fill: parent
@@ -77,7 +80,7 @@ Page {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        video.seek(video.position - 10000)
+                        mediaPlayer.seek(mediaPlayer.position - 10000)
                         overlayTimer.restart()
                     }
                 }
@@ -85,15 +88,15 @@ Page {
 
             Image {
                 id: play
-                source: video.playbackState == MediaPlayer.PlayingState
+                source: mediaPlayer.playbackState == MediaPlayer.PlayingState
                         ? "image://theme/icon-m-pause"
                         : "image://theme/icon-m-play"
 
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: video.playbackState == MediaPlayer.PlayingState
-                               ? video.pause()
-                               : video.play()
+                    onClicked: mediaPlayer.playbackState == MediaPlayer.PlayingState
+                               ? mediaPlayer.pause()
+                               : mediaPlayer.play()
                 }
             }
 
@@ -104,7 +107,7 @@ Page {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        video.seek(video.position + 10000)
+                        mediaPlayer.seek(mediaPlayer.position + 10000)
                         overlayTimer.restart()
                     }
                 }
@@ -114,8 +117,8 @@ Page {
         Slider {
             width: parent.width
             maximumValue: 1.0
-            value: video.position / video.duration
-            valueText: formatTime(video.position)
+            value: mediaPlayer.position / mediaPlayer.duration
+            valueText: YleApi.formatTime(mediaPlayer.position)
             visible: overlayVisible
 
             anchors {
@@ -124,14 +127,14 @@ Page {
             }
 
             onSliderValueChanged: {
-                down && video.seek(sliderValue * video.duration)
+                down && mediaPlayer.seek(sliderValue * mediaPlayer.duration)
                 overlayTimer.restart()
             }
         }
 
         BusyIndicator {
             anchors.centerIn: controls
-            running: video.status === MediaPlayer.Loading || video.status === MediaPlayer.Buffering
+            running: mediaPlayer.status === MediaPlayer.Loading || mediaPlayer.status === MediaPlayer.Buffering
         }
 
         Label {
