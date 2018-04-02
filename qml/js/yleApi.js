@@ -134,13 +134,16 @@ function decryptUrl(url) {
 }
 
 function getMediaUrl(programId, mediaId) {
-    var url = apiUrl + mediaUrl + "&program_id=" + programId + "&media_id=" + mediaId + "&protocol=HLS";
+    var url = apiUrl + mediaUrl + "&program_id=" + programId + "&media_id=" + mediaId + "&protocol=HLS" + "&hardsubtitles=true";
     return HTTP.get(url)
         .then(function(res) {
             console.log(JSON.stringify(res));
-            return res.data[0].url;
-        })
-        .then(decryptUrl);
+
+            return {
+                subtitlesUrl: res.data[0].subtitles[0].uri,
+                url: decryptUrl(res.data[0].url),
+            };
+        });
 }
 
 function search(text, limit, offset) {
@@ -205,5 +208,15 @@ function getCurrentBroadcasts() {
                     console.log(JSON.stringify(error));
                     return [];
                 });
+        });
+}
+
+function getSubtitles(url) {
+    return HTTP.get(url, true)
+        .then(function(res) {
+            console.log('res', res);
+        })
+        .catch(function(error) {
+            console.log('error', error);
         });
 }

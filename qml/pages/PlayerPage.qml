@@ -10,6 +10,8 @@ Page {
     property var program: ({})
     property bool overlayVisible: false
     property bool errorState: false
+    property string subtitlesUrl
+    property var subtitles: ([])
 
     onOverlayVisibleChanged: overlayVisible && overlayTimer.start()
 
@@ -24,8 +26,10 @@ Page {
 
     function initialize() {
         YleApi.getMediaUrl(program.id, program.mediaId)
-            .then(function(url) {
-                mediaPlayer.source = url
+            .then(function(response) {
+                subtitlesUrl = response.subtitlesUrl
+                subtitlesText.getSubtitles(subtitlesUrl)
+                mediaPlayer.source = response.url
                 mediaPlayer.play()
                 YleApi.reportUsage(program.id, program.mediaId)
             })
@@ -62,6 +66,8 @@ Page {
             mediaPlayer.source = ""
         }
 
+        onPositionChanged: subtitlesText.checkSubtitles()
+
         MouseArea {
             anchors.fill: parent
             onClicked: !errorState && (overlayVisible = !overlayVisible)
@@ -94,9 +100,19 @@ Page {
 
                 MouseArea {
                     anchors.fill: parent
+<<<<<<< HEAD
                     onClicked: mediaPlayer.playbackState == MediaPlayer.PlayingState
                                ? mediaPlayer.pause()
                                : mediaPlayer.play()
+=======
+                    onClicked: {
+                        video.playbackState == MediaPlayer.PlayingState
+                           ? video.pause()
+                           : video.play()
+
+                        subtitlesText.getSubtitles(subtitlesUrl)
+                    }
+>>>>>>> sketching subtitles support
                 }
             }
 
@@ -143,5 +159,18 @@ Page {
             text: qsTr("Error loading media")
             visible: errorState
         }
+    }
+
+    SubtitlesItem {
+        id: subtitlesText
+        anchors { fill: parent; margins: page.orientation === Orientation.Portrait ? 10 : 50; }
+        wrapMode: Text.WordWrap
+        horizontalAlignment: Text.AlignHCenter
+        verticalAlignment: Text.AlignBottom
+        pixelSize: subtitlesSize
+        bold: boldSubtitles
+        color: subtitlesColor
+        visible: (enableSubtitles) && (currentVideoSub) ? true : false
+        isSolid: subtitleSolid
     }
 }
