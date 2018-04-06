@@ -15,23 +15,18 @@ Item {
     // Functions ///////////////////////////////////////////////////
 
     function getSubtitles(url) {
-        if (url !== "") subsGetter.sendMessage(url);
-        else subsGetter.sendMessage(streamUrl);
+        subsGetter.sendMessage(url !== "" ? url : streamUrl)
     }
 
     function setSubtitles(subs) {
-        subtitles = subs;
-        console.debug("[videoPlayer.qml] subtitles: " + subtitles)
+        subtitles = subs
     }
 
     WorkerScript {
         id: subsGetter
 
         source: "../js/getSubtitles.js"
-        onMessage: {
-            setSubtitles(messageObject);
-            console.debug("[videoPlayer.qml] subtitleMessageObject: " + messageObject);
-        }
+        onMessage: setSubtitles(messageObject)
     }
 
     function checkSubtitles() {
@@ -42,23 +37,21 @@ Item {
         id: subsChecker
 
         source: "../js/checkSubtitles.js"
-        onMessage: {
-            if (!isSolid) {
-                subtitlesText.text = messageObject
-            } else {
-                subtitlesTextArea.text = messageObject
-            }
-            console.debug("[SubtitlesItem.qml]", messageObject)
-        }
+        onMessage: !isSolid
+                   ? subtitlesText.text = messageObject
+                   : subtitlesTextArea.text = messageObject
     }
 
-    function contrastingColor(color)
-    {
-        var rgb = getRGB(color);
-        console.debug("[SubtitlesItem.qml] getrgb:" + rgb)
-        if (!rgb) return null;
-        return (0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2]) > 180 ? "black" : "white";
+    function contrastingColor(color) {
+        var rgb = getRGB(color)
+
+        if (!rgb) {
+            return null
+        }
+
+        return (0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2]) > 180 ? "black" : "white"
     }
+
     function getRGB(b) {
         var a;
         if (b && b.constructor === Array && b.length === 3) return b;
@@ -68,8 +61,6 @@ Item {
                                                                                                                                       16)];
         if (a = /#([a-fA-F0-9])([a-fA-F0-9])([a-fA-F0-9])/.exec(b)) return [parseInt(a[1] + a[1], 16), parseInt(a[2] + a[2], 16), parseInt(a[3] + a[3], 16)];
     }
-
-    ///// End of Functions ////////////////////////////////////////////
 
     Label {
         id: subtitlesText
@@ -83,9 +74,6 @@ Item {
         font.bold: rootItem.bold
         color: rootItem.color
         visible: parent.visible && !isSolid
-        onTextChanged: {
-            console.debug("[videoPlayer.qml] Subtitletext: " + text)
-        }
         style: Text.Outline
         styleColor: contrastingColor(color)
     }
@@ -105,9 +93,5 @@ Item {
         selectedTextColor: rootItem.color
         selectionColor: contrastingColor(color)
         visible: parent.visible && isSolid
-        onTextChanged: {
-            //console.debug("[videoPlayer.qml] Subtitletext: " + text)
-            selectAll();
-        }
     }
 }
