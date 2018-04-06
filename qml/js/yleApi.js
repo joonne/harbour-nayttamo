@@ -134,11 +134,9 @@ function decryptUrl(url) {
 }
 
 function getMediaUrl(programId, mediaId) {
-    var url = apiUrl + mediaUrl + "&program_id=" + programId + "&media_id=" + mediaId + "&protocol=HLS" + "&hardsubtitles=true";
+    var url = apiUrl + mediaUrl + "&program_id=" + programId + "&media_id=" + mediaId + "&protocol=HLS";
     return HTTP.get(url)
         .then(function(res) {
-            console.log(JSON.stringify(res));
-
             return {
                 subtitlesUrl: res.data[0].subtitles[0].uri,
                 url: decryptUrl(res.data[0].url),
