@@ -133,12 +133,20 @@ function decryptUrl(url) {
     return CryptoJS.decrypt(url, decryptKey);
 }
 
+function findSubtitlesUrlByLanguage(language, subtitles) {
+    var foundSubtitles = subtitles.filter(function(item) {
+        return item.lang === language;
+    });
+
+    return foundSubtitles && foundSubtitles[0] && foundSubtitles[0].uri;
+}
+
 function getMediaUrl(programId, mediaId) {
     var url = apiUrl + mediaUrl + "&program_id=" + programId + "&media_id=" + mediaId + "&protocol=HLS";
     return HTTP.get(url)
         .then(function(res) {
             return {
-                subtitlesUrl: res.data[0].subtitles[0].uri,
+                subtitlesUrl: findSubtitlesUrlByLanguage("fi", res.data[0].subtitles),
                 url: decryptUrl(res.data[0].url),
             };
         });
