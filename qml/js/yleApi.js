@@ -208,13 +208,3 @@ function getCurrentBroadcasts() {
                 });
         });
 }
-
-function getSubtitles(url) {
-    return HTTP.get(url, true)
-        .then(function(res) {
-            console.log('res', res);
-        })
-        .catch(function(error) {
-            console.log('error', error);
-        });
-}

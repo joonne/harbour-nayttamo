@@ -167,10 +167,9 @@ Page {
         wrapMode: Text.WordWrap
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignBottom
-        pixelSize: subtitlesSize
-        bold: boldSubtitles
-        color: subtitlesColor
-        visible: (enableSubtitles) && (currentVideoSub) ? true : false
-        isSolid: subtitleSolid
+        pixelSize: Theme.fontSizeMedium
+        bold: true
+        color: "#FFFFFF"
+        visible: subtitles ? true : false
     }
 }

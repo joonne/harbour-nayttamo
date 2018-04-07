@@ -18,7 +18,6 @@ WorkerScript.onMessage = function(message) {
         sub = a[ii];
         if (sub.start <= pos) {
             text.push(sub.text);
-            console.debug("[checksubtitles] sub.text: " + sub.text);
         }
     }
 
