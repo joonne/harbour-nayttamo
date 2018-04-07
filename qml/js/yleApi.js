@@ -15,18 +15,27 @@ var trackingUrl = "/tracking/streamstart?" + credentials;
 var currentBroadcastUrl = "/programs/schedules/now.json?" + credentials;
 var servicesUrl = "/programs/services.json?" + credentials;
 
+var handleError = function(caller, callback) {
+    return function(error) {
+        console.log(caller, JSON.stringify(error));
+        callback(error);
+    };
+};
+
 var filterAvailablePrograms = function(programs) {
     return programs.reduce(function(acc, program) {
         var foundPublicationEvents = program.publicationEvent.filter(function(event) {
             return event.temporalStatus === "currently" && event.type === "OnDemandPublication";
         });
+
         if (foundPublicationEvents.length) {
-            program.publicationEvent = foundPublicationEvents[0];
+            program.publicationEvent = foundPublicationEvents[0]; // TODO: check this
             acc.push(program);
         }
+
         return acc;
     }, []);
-}
+};
 
 function formatProgramDetails(seasonNumber, episodeNumber) {
     if (seasonNumber && episodeNumber) {
@@ -57,14 +66,16 @@ function parseDuration(duration) {//PT1H58M45S
     if (!duration) {
         return "";
     }
+
     var durationStr = duration.substr(2);
     var hourSepIndex = durationStr.indexOf("H");
     var minSepIndex = durationStr.indexOf("M");
     var secSepIndex = durationStr.indexOf("S");
     var hour = durationStr.substr(0, hourSepIndex);
-    var min = durationStr.substring(hourSepIndex+1, minSepIndex);
-    var sec = zeropad(durationStr.substr(minSepIndex+1, secSepIndex >= 0 ? secSepIndex-minSepIndex-1 : secSepIndex).substr(0, 2), 2);
-    return hour ? ""+hour+":"+zeropad(min, 2)+":"+sec : ""+zeropad(min, 1)+":"+sec;
+    var min = durationStr.substring(hourSepIndex + 1, minSepIndex);
+    var sec = zeropad(durationStr.substr(minSepIndex + 1, secSepIndex >= 0 ? secSepIndex-minSepIndex-1 : secSepIndex).substr(0, 2), 2);
+
+    return hour ? "" + hour + ":" + zeropad(min, 2) + ":" + sec : "" + zeropad(min, 1) + ":" + sec;
 }
 
 function parseTime(timeStr) {//2014-01-23T21:00:07+02:00
@@ -96,22 +107,14 @@ var mapPrograms = function(programs) {
 
 function getProgramById(id) {
     return HTTP.get(apiUrl + "/programs/items/" + id + ".json?" + credentials)
-        .then(function(program) {
-            console.log(JSON.stringify(program));
-            return program;
-        })
-        .catch(function(error) {
-            console.log(JSON.stringify(error));
-            return {};
-        })
+        .catch(handleError("getProgramById", function() { return {}; }));
 }
 
 function getProgramsByCategoryId(categoryId, limit, offset) {
-    var url = apiUrl + programsUrl + '&category=' + categoryId + '&availability=ondemand&mediaobject=video&offset='+offset+'&limit='+limit;
+    var url = apiUrl + programsUrl + '&category=' + categoryId + '&availability=ondemand&mediaobject=video&offset=' + offset + '&limit=' + limit;
     return HTTP.get(url)
-        .then(function(response) {
-            return filterAvailablePrograms(response.data);
-        })
+        .then(function(response) { return response.data; })
+        .then(filterAvailablePrograms)
         .then(mapPrograms);
 }
 
@@ -154,16 +157,11 @@ function getMediaUrl(programId, mediaId) {
 
 function search(text, limit, offset) {
     var url = apiUrl + programsUrl + '&availability=ondemand&mediaobject=video' + '&q=' + text + '&offset=' + offset + '&limit=' + limit;
-    console.log('requesting', url);
     return HTTP.get(url)
-        .then(function(response) {
-            return filterAvailablePrograms(response.data);
-        })
+        .then(function(response) { return response.data; })
+        .then(filterAvailablePrograms)
         .then(mapPrograms)
-        .catch(function(error) {
-            console.log('search error', error);
-            throw error;
-        })
+        .catch(handleError("search", function(error) { throw error; }));
 }
 
 function reportUsage(programId, mediaId) {
@@ -182,20 +180,16 @@ function getServices() {
         HTTP.get(webcastServiceUrl)
     ])
         .then(function(response) {
-            console.log(response);
             return response.reduce(function(acc, curr) {
                 return acc.concat(curr.data);
-            }, [])
+            }, []);
         })
         .then(function(response) {
             return response.map(function(service) {
                 return service.id;
             });
         })
-        .catch(function(error) {
-            console.log(JSON.stringify(error));
-            return [];
-        })
+        .catch(handleError("getServices", function() { return []; }));
 }
 
 function getCurrentBroadcasts() {
@@ -210,9 +204,6 @@ function getCurrentBroadcasts() {
                 })
                 .then(filterAvailablePrograms)
                 .then(mapPrograms)
-                .catch(function(error) {
-                    console.log(JSON.stringify(error));
-                    return [];
-                });
+                .catch(handleError("getCurrentBroadcasts", function() { return []; }));
         });
 }
