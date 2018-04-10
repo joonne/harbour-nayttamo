@@ -1,3 +1,10 @@
+/**
+
+  Heavily inspired and/or copied from harbour-videoPlayer: https://github.com/llelectronics/videoPlayer
+  original source file: https://github.com/llelectronics/videoPlayer/blob/master/qml/pages/helper/SubtitlesItem.qml
+
+**/
+
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
@@ -12,15 +19,11 @@ Item {
     property variant color
     property bool isSolid: false
 
-    // Functions ///////////////////////////////////////////////////
-
     function getSubtitles(url) {
         subsGetter.sendMessage(url !== "" ? url : streamUrl)
     }
 
-    function setSubtitles(subs) {
-        subtitles = subs
-    }
+    function setSubtitles(subs) { subtitles = subs }
 
     WorkerScript {
         id: subsGetter
@@ -49,9 +52,11 @@ Item {
             return null
         }
 
+        // TODO: what are these values?
         return (0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2]) > 180 ? "black" : "white"
     }
 
+    // TODO: find out how to clean this and if we need it
     function getRGB(b) {
         var a;
         if (b && b.constructor === Array && b.length === 3) return b;

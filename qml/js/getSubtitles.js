@@ -1,31 +1,26 @@
-WorkerScript.onMessage = function(url) {
-    var e = true;
-    var cp = true;
-    var def = true;
-    var subtitles = [];
-    var doc = new XMLHttpRequest();
+/**
 
-    doc.onreadystatechange = function() {
-        if (doc.readyState === XMLHttpRequest.DONE) {
-            if (doc.status === 200) {
-                try {
-                    srtParser(doc, subtitles);
-                    WorkerScript.sendMessage(subtitles);
-                } catch(err) {
-                    WorkerScript.sendMessage([]);
-                }
-            }
-        }
-    }
+  Heavily inspired and/or copied from harbour-videoPlayer: https://github.com/llelectronics/videoPlayer
+  original source file: https://github.com/llelectronics/videoPlayer/blob/master/qml/pages/helper/getsubtitles.js
 
-    doc.open("GET", url);
-    doc.send();
-}
+**/
 
-/* This should work with multi line srts but might contain some bugs still */
-function srtParser(doc, subtitles) {
+var getSubTime = function(time) {
+    var hms = time.split(":");
+    var hours = hms[0] * 3600000;
+    var mins = hms[1] * 60000;
+    var sms = hms[2].split(",");
+    var secs = sms[0] * 1000;
+    var msecs = parseInt(sms[1]);
+
+    return hours + mins + secs + msecs;
+};
+
+// TODO: rewrite this to be more clear?
+var srtParser = function(doc) {
     var srt_ = doc.responseText.replace(/\r\n?/g, '\n').trim().split(/\n{2,}/);
     var s, st, n, pp;
+    var subtitles = [];
     for (s in srt_) {
         var sub = {};
         st = srt_[s].split('\n');
@@ -42,14 +37,28 @@ function srtParser(doc, subtitles) {
             subtitles.push(sub);
         }
     }
-}
 
-function getSubTime(time) {
-    var hms = time.split(":");
-    var hours = hms[0] * 3600000;
-    var mins = hms[1] * 60000;
-    var sms = hms[2].split(",");
-    var secs = sms[0] * 1000;
-    var msecs = parseInt(sms[1]);
-    return hours + mins + secs + msecs;
+    return subtitles;
+};
+
+WorkerScript.onMessage = function(url) {
+    var e = true;
+    var cp = true;
+    var def = true;
+    var doc = new XMLHttpRequest();
+
+    doc.onreadystatechange = function() {
+        if (doc.readyState === XMLHttpRequest.DONE) {
+            if (doc.status === 200) {
+                try {
+                    WorkerScript.sendMessage(srtParser(doc));
+                } catch(err) {
+                    WorkerScript.sendMessage([]);
+                }
+            }
+        }
+    }
+
+    doc.open("GET", url);
+    doc.send();
 }
