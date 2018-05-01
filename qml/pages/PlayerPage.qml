@@ -131,6 +131,7 @@ Page {
         }
 
         Slider {
+            id: slider
             width: parent.width
             maximumValue: 1.0
             value: mediaPlayer.position / mediaPlayer.duration
@@ -166,7 +167,7 @@ Page {
         anchors { fill: parent; margins: page.orientation === Orientation.Portrait ? 10 : 50; }
         wrapMode: Text.WordWrap
         horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignBottom
+        verticalAlignment: overlayVisible ? Text.AlignTop : Text.AlignBottom
         pixelSize: Theme.fontSizeMedium
         bold: true
         color: "#FFFFFF"
