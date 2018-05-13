@@ -12,6 +12,10 @@ Page {
         YleApi.getProgramById(program.seriesId);
     }
 
+    onVisibleChanged: {
+        if (visible) updateCover(qsTr("Program overview"), program.title, program.itemTitle)
+    }
+
     SilicaFlickable {
         id: listView
         anchors.fill: parent

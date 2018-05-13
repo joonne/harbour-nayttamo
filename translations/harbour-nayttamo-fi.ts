@@ -11,33 +11,37 @@
 <context>
     <name>CoverPage</name>
     <message>
-        <source>My Cover</source>
+        <source>Näyttämö</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>FirstPage</name>
     <message>
+        <source>Current Broadcasts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Search</source>
-        <translation>Haku</translation>
+        <translation type="unfinished">Haku</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Kategoriat</translation>
-    </message>
-    <message>
-        <source>Current Broadcasts</source>
-        <translation>Nykyiset lähetykset</translation>
+        <translation type="unfinished">Kategoriat</translation>
     </message>
     <message>
         <source>Show program info</source>
-        <translation>Näytä ohjelman tiedot</translation>
+        <translation type="unfinished">Näytä ohjelman tiedot</translation>
     </message>
 </context>
 <context>
     <name>PlayerPage</name>
     <message>
         <source>Error loading media</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Now playing</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -66,6 +70,10 @@
         <source>Episode</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Program overview</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ProgramsPage</name>
@@ -80,6 +88,10 @@
     <message>
         <source>Next page</source>
         <translation>Seuraava sivu</translation>
+    </message>
+    <message>
+        <source>Category</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -99,6 +111,10 @@
     <message>
         <source>Next page</source>
         <translation>Seuraava sivu</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished">Haku</translation>
     </message>
 </context>
 <context>

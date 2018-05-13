@@ -27,6 +27,10 @@ Page {
         getPrograms();
     }
 
+    onVisibleChanged: {
+        if (visible) updateCover(qsTr("Category"), category.title, "")
+    }
+
     // The effective value will be restricted by ApplicationWindow.allowedOrientations
     allowedOrientations: Orientation.All
 

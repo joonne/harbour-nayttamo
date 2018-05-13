@@ -11,11 +11,15 @@ Page {
     // The effective value will be restricted by ApplicationWindow.allowedOrientations
     allowedOrientations: Orientation.All
 
+    onVisibleChanged: {
+        if (visible) updateCover(qsTr("Search"), searchField.text, "")
+    }
     Component.onDestruction: {
         listView.model = []
     }
 
     function search(text) {
+        updateCover(qsTr("Search"), searchField.text, "")
         YleApi.search(searchField.text, limit, offset)
             .then(function(programs) {
                 listView.model = programs
