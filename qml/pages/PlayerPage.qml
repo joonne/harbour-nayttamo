@@ -10,6 +10,8 @@ Page {
     property var program: ({})
     property bool overlayVisible: false
     property bool errorState: false
+    property string subtitlesUrl
+    property var subtitles: ([])
 
     onOverlayVisibleChanged: overlayVisible && overlayTimer.start()
 
@@ -18,14 +20,21 @@ Page {
         onActiveChanged: !Qt.application.active ? mediaPlayer.pause() : mediaPlayer.play()
     }
 
+    Connections {
+        target: mediaPlayer
+        onPositionChanged: subtitlesText.checkSubtitles()
+    }
+
     onVisibleChanged: {
         if (visible) updateCover(qsTr("Now playing"), program.title, program.itemTitle)
     }
 
     function initialize() {
         YleApi.getMediaUrl(program.id, program.mediaId)
-            .then(function(url) {
-                mediaPlayer.source = url
+            .then(function(response) {
+                subtitlesUrl = response.subtitlesUrl
+                subtitlesText.getSubtitles(subtitlesUrl)
+                mediaPlayer.source = response.url
                 mediaPlayer.play()
                 YleApi.reportUsage(program.id, program.mediaId)
             })
@@ -94,9 +103,13 @@ Page {
 
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: mediaPlayer.playbackState == MediaPlayer.PlayingState
-                               ? mediaPlayer.pause()
-                               : mediaPlayer.play()
+                    onClicked: {
+                        mediaPlayer.playbackState == MediaPlayer.PlayingState
+                            ? mediaPlayer.pause()
+                            : mediaPlayer.play()
+
+                        subtitlesText.getSubtitles(subtitlesUrl)
+                    }
                 }
             }
 
@@ -115,6 +128,7 @@ Page {
         }
 
         Slider {
+            id: slider
             width: parent.width
             maximumValue: 1.0
             value: mediaPlayer.position / mediaPlayer.duration
@@ -143,5 +157,17 @@ Page {
             text: qsTr("Error loading media")
             visible: errorState
         }
+    }
+
+    SubtitlesItem {
+        id: subtitlesText
+        anchors { fill: parent; margins: page.orientation === Orientation.Portrait ? 10 : 50; }
+        wrapMode: Text.WordWrap
+        horizontalAlignment: Text.AlignHCenter
+        verticalAlignment: overlayVisible ? Text.AlignTop : Text.AlignBottom
+        pixelSize: Theme.fontSizeMedium
+        bold: true
+        color: "#FFFFFF"
+        visible: subtitles ? true : false
     }
 }
