@@ -19,7 +19,7 @@ WorkerScript.onMessage = function(message) {
         if (pos < a[ii].start) i1 = ii; else i0 = ii;
     }
 
-    while (i0 >= 0 && pos <= a[i0].end) i0--;
+    while (i0 >= 0 && a[i0] && pos <= a[i0].end) i0--;
 
     for (ii = i0 + 1; ii < i1; ii++) {
         sub = a[ii];
