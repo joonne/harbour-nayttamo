@@ -33,7 +33,7 @@ Item {
     }
 
     function checkSubtitles() {
-        subsChecker.sendMessage({ "position": video.position, "subtitles": subtitles })
+        subsChecker.sendMessage({ "position": mediaPlayer.position, "subtitles": subtitles })
     }
 
     WorkerScript {

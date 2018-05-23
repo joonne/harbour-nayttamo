@@ -20,6 +20,11 @@ Page {
         onActiveChanged: !Qt.application.active ? mediaPlayer.pause() : mediaPlayer.play()
     }
 
+    Connections {
+        target: mediaPlayer
+        onPositionChanged: subtitlesText.checkSubtitles()
+    }
+
     onVisibleChanged: {
         if (visible) updateCover(qsTr("Now playing"), program.title, program.itemTitle)
     }
@@ -66,8 +71,6 @@ Page {
             mediaPlayer.source = ""
         }
 
-        onPositionChanged: subtitlesText.checkSubtitles()
-
         MouseArea {
             anchors.fill: parent
             onClicked: !errorState && (overlayVisible = !overlayVisible)
@@ -100,19 +103,13 @@ Page {
 
                 MouseArea {
                     anchors.fill: parent
-<<<<<<< HEAD
-                    onClicked: mediaPlayer.playbackState == MediaPlayer.PlayingState
-                               ? mediaPlayer.pause()
-                               : mediaPlayer.play()
-=======
                     onClicked: {
-                        video.playbackState == MediaPlayer.PlayingState
-                           ? video.pause()
-                           : video.play()
+                        mediaPlayer.playbackState == MediaPlayer.PlayingState
+                            ? mediaPlayer.pause()
+                            : mediaPlayer.play()
 
                         subtitlesText.getSubtitles(subtitlesUrl)
                     }
->>>>>>> sketching subtitles support
                 }
             }
 

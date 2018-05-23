@@ -37,11 +37,11 @@
 <context>
     <name>PlayerPage</name>
     <message>
-        <source>Error loading media</source>
+        <source>Now playing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Now playing</source>
+        <source>Error loading media</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
