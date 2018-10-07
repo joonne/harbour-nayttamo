@@ -12,9 +12,9 @@ ApplicationWindow
     property string coverSubTitle: ""
 
     function updateCover(newCoverMode, newCoverTitle, newCoverSubtitle) {
-        coverMode = newCoverMode
-        coverTitle = newCoverTitle
-        coverSubTitle = newCoverSubtitle
+        coverMode = newCoverMode ? newCoverMode : ""
+        coverTitle = newCoverTitle ? newCoverTitle : ""
+        coverSubTitle = newCoverSubtitle ? newCoverSubtitle : ""
     }
 
     MediaPlayer {

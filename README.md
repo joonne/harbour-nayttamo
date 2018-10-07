@@ -13,10 +13,10 @@ Native YLE Areena for Sailfish OS
 
 Näyttämö expects YLE API credentials (APP_ID, APP_KEY & DECRYPT_KEY) to be found from `.env` file in project root.
 
-qmake is reading the credentials from file & passing them to C++ as DEFINES and after that they are made available for the QML application as context properties.
+qmake is reading the credentials from file & passing them to C++ as DEFINES and after that they are made available for the QML application as context properties. The format of DECRYPT_KEY is hexadecimal number e.g. 0x1234567890abcdef.
 
 ```
 APP_ID=\"APP_ID\"
 APP_KEY=\"APP_KEY\"
-DECRYPT_KEY=\"DECRYPT_KEY\"
+DECRYPT_KEY=DECRYPT_KEY
 ```

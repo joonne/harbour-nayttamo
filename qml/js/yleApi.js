@@ -1,5 +1,4 @@
 .import "http.js" as HTTP
-.import "crypto.js" as CryptoJS
 .import "promise.js" as Promise
 
 var apiUrl = "https://external.api.yle.fi/v1";
@@ -133,7 +132,7 @@ function getCategories() {
 }
 
 function decryptUrl(url) {
-    return CryptoJS.decrypt(url, decryptKey);
+    return urlDecrypt.decryptUrl(url);
 }
 
 function findSubtitlesUrlByLanguage(language, subtitles) {
