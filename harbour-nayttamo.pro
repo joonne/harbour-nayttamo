@@ -12,9 +12,10 @@
 # The name of your application
 TARGET = harbour-nayttamo
 
-CONFIG += sailfishapp
+CONFIG += sailfishapp libcrypto
 
-SOURCES += src/harbour-nayttamo.cpp
+SOURCES += src/harbour-nayttamo.cpp \
+    src/urldecrypt.cpp
 
 OTHER_FILES += \
     qml/cover/CoverPage.qml \
@@ -47,7 +48,6 @@ DISTFILES += \
     qml/pages/ProgramsPage.qml \
     qml/pages/PlayerPage.qml \
     qml/pages/SearchPage.qml \
-    qml/js/crypto.js \
     qml/pages/ProgramOverviewPage.qml \
     qml/main.qml
 
@@ -70,3 +70,8 @@ REQUIRED = $$find(DEFINES, "APP_ID") $$find(DEFINES, "APP_KEY") $$find(DEFINES, 
 !count(REQUIRED, 3) {
    error( "invalid env variables" )
 }
+
+HEADERS += \
+    src/urldecrypt.h
+
+unix: PKGCONFIG += libcrypto

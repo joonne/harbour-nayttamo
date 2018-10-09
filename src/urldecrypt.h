@@ -1,6 +1,5 @@
 /*
-  Copyright (C) 2013 Jolla Ltd.
-  Contact: Thomas Perl <thomas.perl@jollamobile.com>
+  Copyright (C) 2018 Matti Lehtimäki <matti.lehtimaki@gmail.com>
   All rights reserved.
 
   You may use this file under the terms of BSD license as follows:
@@ -28,31 +27,19 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifdef QT_QML_DEBUG
-#include <QtQuick>
-#endif
+#ifndef URLDECRYPT_H
+#define URLDECRYPT_H
 
-#include <sailfishapp.h>
-#include "urldecrypt.h"
+#include <QObject>
+#include <QString>
 
-int main(int argc, char *argv[])
+class UrlDecrypt : public QObject
 {
-    UrlDecrypt urlDecrypt;
-    QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
-    QScopedPointer<QQuickView> view(SailfishApp::createView());
+    Q_OBJECT
+public:
+    explicit UrlDecrypt(QObject *parent = nullptr) : QObject(parent) {};
 
-    view->rootContext()->setContextProperty("appVersion", APP_VERSION);
-    view->rootContext()->setContextProperty("appBuildNum", APP_BUILDNUM);
+    Q_INVOKABLE QString decryptUrl(const QString &url);
+};
 
-    view->rootContext()->setContextProperty("appId", APP_ID);
-    view->rootContext()->setContextProperty("appKey", APP_KEY);
-
-    view->rootContext()->setContextProperty("urlDecrypt", &urlDecrypt);
-
-    view->engine()->addImportPath(SailfishApp::pathTo("qml/components").toString());
-    view->setSource(SailfishApp::pathTo("qml/main.qml"));
-
-    view->show();
-
-    return app->exec();
-}
+#endif // URLDECRYPT_H
