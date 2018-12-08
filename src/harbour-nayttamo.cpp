@@ -32,6 +32,12 @@
 #include <QtQuick>
 #endif
 
+#include <QGuiApplication>
+#include <QQmlContext>
+#include <QQmlEngine>
+#include <QQuickView>
+#include <QScopedPointer>
+
 #include <sailfishapp.h>
 #include "urldecrypt.h"
 

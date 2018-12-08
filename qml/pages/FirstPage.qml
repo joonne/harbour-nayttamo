@@ -71,7 +71,7 @@ Page {
                         anchors.left: parent.left
                         source: modelData.image && modelData.image.id && modelData.image.available
                                 ? "http://images.cdn.yle.fi/image/upload/w_" + parent.width + ",h_" + Math.floor(parent.width * 16 / 9) + ",c_fit/" + modelData.image.id + ".jpg"
-                                : null
+                                : ""
                     }
 
                     Label {

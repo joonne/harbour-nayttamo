@@ -43,7 +43,7 @@ ListItem {
         Label {
             id: title
             color: highlighted ? Theme.highlightColor : Theme.primaryColor
-            text: modelData.title
+            text: modelData.title ? modelData.title : ""
             font.bold: true
             font.pixelSize: Theme.fontSizeExtraSmall
             truncationMode: TruncationMode.Fade
