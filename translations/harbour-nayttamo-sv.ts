@@ -5,131 +5,131 @@
     <name>CategoriesPage</name>
     <message>
         <source>Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorier</translation>
     </message>
 </context>
 <context>
     <name>CoverPage</name>
     <message>
         <source>Näyttämö</source>
-        <translation type="unfinished"></translation>
+        <translation>Näyttämö</translation>
     </message>
 </context>
 <context>
     <name>FirstPage</name>
     <message>
         <source>Current Broadcasts</source>
-        <translation type="unfinished"></translation>
+        <translation>Nu spelas</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Sök</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorier</translation>
     </message>
     <message>
         <source>Show program info</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa programinformation</translation>
     </message>
 </context>
 <context>
     <name>PlayerPage</name>
     <message>
         <source>Now playing</source>
-        <translation type="unfinished"></translation>
+        <translation>Nu spelas</translation>
     </message>
     <message>
         <source>Error loading media</source>
-        <translation type="unfinished"></translation>
+        <translation>Fel vid inmatning av media</translation>
     </message>
 </context>
 <context>
     <name>ProgramDelegate</name>
     <message>
         <source>Show program info</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa programinformation</translation>
     </message>
 </context>
 <context>
     <name>ProgramOverviewPage</name>
     <message>
         <source>Released</source>
-        <translation type="unfinished"></translation>
+        <translation>Publicerat</translation>
     </message>
     <message>
         <source>Duration</source>
-        <translation type="unfinished"></translation>
+        <translation>Varaktighet</translation>
     </message>
     <message>
         <source>Play</source>
-        <translation type="unfinished"></translation>
+        <translation>Spela</translation>
     </message>
     <message>
         <source>Episode</source>
-        <translation type="unfinished"></translation>
+        <translation>Avsnitt</translation>
     </message>
     <message>
         <source>Program overview</source>
-        <translation type="unfinished"></translation>
+        <translation>Programöversikt</translation>
     </message>
 </context>
 <context>
     <name>ProgramsPage</name>
     <message>
         <source>Programs</source>
-        <translation type="unfinished"></translation>
+        <translation>Program</translation>
     </message>
     <message>
         <source>Previous page</source>
-        <translation type="unfinished"></translation>
+        <translation>Föregående sidan</translation>
     </message>
     <message>
         <source>Next page</source>
-        <translation type="unfinished"></translation>
+        <translation>Nästä sidan</translation>
     </message>
     <message>
         <source>Category</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategori</translation>
     </message>
 </context>
 <context>
     <name>SearchPage</name>
     <message>
         <source>Search for a program</source>
-        <translation type="unfinished"></translation>
+        <translation>Sök efter ett program</translation>
     </message>
     <message>
         <source>Here will be stuff when you search for something</source>
-        <translation type="unfinished"></translation>
+        <translation>Här blir saker när du söker efter något</translation>
     </message>
     <message>
         <source>Previous page</source>
-        <translation type="unfinished"></translation>
+        <translation>Föregående sidan</translation>
     </message>
     <message>
         <source>Next page</source>
-        <translation type="unfinished"></translation>
+        <translation>Nästä sidan</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Sök</translation>
     </message>
 </context>
 <context>
     <name>yleApi</name>
     <message>
         <source>Season %1 Episode %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Säsong %1 Avsnitt %2</translation>
     </message>
     <message>
         <source>Season %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Säsong %1</translation>
     </message>
     <message>
         <source>Episode %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Avsnitt %1</translation>
     </message>
 </context>
 </TS>
