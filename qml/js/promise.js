@@ -1,4 +1,7 @@
-/* taylorhakes/promise-polyfill */
+/*
+ * github.com/taylorhakes/promise-polyfill
+ * Original source license: MIT
+ */
 
 .import "timeout.js" as Timeout;
 
