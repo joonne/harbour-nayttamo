@@ -66,15 +66,18 @@ function parseDuration(duration) {//PT1H58M45S
         return "";
     }
 
+    var previousSepIndex = 0;
     var durationStr = duration.substr(2);
-    var hourSepIndex = durationStr.indexOf("H");
-    var minSepIndex = durationStr.indexOf("M");
-    var secSepIndex = durationStr.indexOf("S");
-    var hour = durationStr.substr(0, hourSepIndex);
-    var min = durationStr.substring(hourSepIndex + 1, minSepIndex);
-    var sec = zeropad(durationStr.substr(minSepIndex + 1, secSepIndex >= 0 ? secSepIndex-minSepIndex-1 : secSepIndex).substr(0, 2), 2);
+    var sepIndex = durationStr.indexOf("H");
+    var hour = durationStr.substr(0, sepIndex);
+    previousSepIndex = sepIndex >= 0 ? sepIndex + 1 : previousSepIndex;
+    sepIndex = durationStr.indexOf("M");
+    var min = sepIndex >= 0 ? durationStr.substring(previousSepIndex, sepIndex) : "0";
+    previousSepIndex = sepIndex >= 0 ? sepIndex + 1 : previousSepIndex;
+    sepIndex = durationStr.indexOf("S");
+    var sec = sepIndex >= 0 ? zeropad(durationStr.substring(previousSepIndex, sepIndex), 2) : "00";
 
-    return hour ? "" + hour + ":" + zeropad(min, 2) + ":" + sec : "" + zeropad(min, 1) + ":" + sec;
+    return "" + (hour ? hour + ":" + zeropad(min, 2) : zeropad(min, 1)) + ":" + sec;
 }
 
 function parseTime(timeStr) {//2014-01-23T21:00:07+02:00
