@@ -89,10 +89,14 @@ function parseTime(timeStr) {//2014-01-23T21:00:07+02:00
 
 var mapPrograms = function(programs) {
     return programs.map(function(program) {
+        var seriesTitle = program.partOfSeries && program.partOfSeries.title && program.partOfSeries.title.fi;
+        var programTitle = program.title && program.title.fi || "";
+        var shortDescription = seriesTitle && programTitle && seriesTitle !== programTitle ? programTitle : (program.shortDescription && program.shortDescription.fi || "");
+
         return {
             id: program.id,
-            title: program.title && program.title.fi,
-            itemTitle: program.itemTitle && program.itemTitle.fi,
+            title: seriesTitle ? seriesTitle : programTitle,
+            shortDescription: shortDescription,
             description: program.description && program.description.fi,
             duration: parseDuration(program.duration),
             startTime: program.publicationEvent && program.publicationEvent.startTime && parseTime(program.publicationEvent.startTime),

@@ -67,10 +67,6 @@
         <translation>Toista</translation>
     </message>
     <message>
-        <source>Episode</source>
-        <translation>Jakso</translation>
-    </message>
-    <message>
         <source>Program overview</source>
         <translation>Ohjelman kuvaus</translation>
     </message>

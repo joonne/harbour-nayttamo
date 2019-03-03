@@ -67,10 +67,6 @@
         <translation>Spela</translation>
     </message>
     <message>
-        <source>Episode</source>
-        <translation>Avsnitt</translation>
-    </message>
-    <message>
         <source>Program overview</source>
         <translation>Programöversikt</translation>
     </message>
