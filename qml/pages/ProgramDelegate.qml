@@ -43,7 +43,7 @@ ListItem {
         Label {
             id: title
             color: highlighted ? Theme.highlightColor : Theme.primaryColor
-            text: modelData.title
+            text: modelData.title ? modelData.title : ""
             font.bold: true
             font.pixelSize: Theme.fontSizeExtraSmall
             truncationMode: TruncationMode.Fade
@@ -57,9 +57,10 @@ ListItem {
         Label {
             id: episode
             color: highlighted ? Theme.highlightColor : Theme.primaryColor
-            text: YleApi.formatProgramDetails(modelData.seasonNumber, modelData.episodeNumber)
+            text: modelData.shortDescription ? modelData.shortDescription : YleApi.formatProgramDetails(modelData.seasonNumber, modelData.episodeNumber)
             font.pixelSize: Theme.fontSizeExtraSmall
             truncationMode: TruncationMode.Fade
+            visible: text !== ""
             anchors {
                 left: img.right
                 top: title.bottom
@@ -83,6 +84,7 @@ ListItem {
             color: highlighted ? Theme.highlightColor : Theme.primaryColor
             text: modelData.duration
             font.pixelSize: Theme.fontSizeTiny
+            visible: text !== ""
             anchors {
                 right: parent.right
                 baseline: time.baseline

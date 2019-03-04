@@ -22,7 +22,7 @@ Page {
 
     Connections {
         target: mediaPlayer
-        onPositionChanged: subtitlesText.checkSubtitles()
+        onPositionChanged: subtitlesText && subtitlesText.checkSubtitles()
     }
 
     onVisibleChanged: {
@@ -97,14 +97,14 @@ Page {
 
             Image {
                 id: play
-                source: mediaPlayer.playbackState == MediaPlayer.PlayingState
+                source: mediaPlayer.playbackState === MediaPlayer.PlayingState
                         ? "image://theme/icon-m-pause"
                         : "image://theme/icon-m-play"
 
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        mediaPlayer.playbackState == MediaPlayer.PlayingState
+                        mediaPlayer.playbackState === MediaPlayer.PlayingState
                             ? mediaPlayer.pause()
                             : mediaPlayer.play()
 

@@ -12,67 +12,63 @@
     <name>CoverPage</name>
     <message>
         <source>Näyttämö</source>
-        <translation type="unfinished"></translation>
+        <translation>Näyttämö</translation>
     </message>
 </context>
 <context>
     <name>FirstPage</name>
     <message>
         <source>Current Broadcasts</source>
-        <translation type="unfinished"></translation>
+        <translation>Menossa olevat ohjelmat</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished">Haku</translation>
+        <translation>Haku</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation type="unfinished">Kategoriat</translation>
+        <translation>Kategoriat</translation>
     </message>
     <message>
         <source>Show program info</source>
-        <translation type="unfinished">Näytä ohjelman tiedot</translation>
+        <translation>Näytä ohjelman tiedot</translation>
     </message>
 </context>
 <context>
     <name>PlayerPage</name>
     <message>
         <source>Now playing</source>
-        <translation type="unfinished"></translation>
+        <translation>Nyt soi</translation>
     </message>
     <message>
         <source>Error loading media</source>
-        <translation type="unfinished"></translation>
+        <translation>Virhe ladatessa mediaa</translation>
     </message>
 </context>
 <context>
     <name>ProgramDelegate</name>
     <message>
         <source>Show program info</source>
-        <translation type="unfinished">Näytä ohjelman tiedot</translation>
+        <translation>Näytä ohjelman tiedot</translation>
     </message>
 </context>
 <context>
     <name>ProgramOverviewPage</name>
     <message>
         <source>Released</source>
-        <translation type="unfinished"></translation>
+        <translation>Julkaistu</translation>
     </message>
     <message>
         <source>Duration</source>
-        <translation type="unfinished"></translation>
+        <translation>Kesto</translation>
     </message>
     <message>
         <source>Play</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Episode</source>
-        <translation type="unfinished"></translation>
+        <translation>Toista</translation>
     </message>
     <message>
         <source>Program overview</source>
-        <translation type="unfinished"></translation>
+        <translation>Ohjelman kuvaus</translation>
     </message>
 </context>
 <context>
@@ -91,7 +87,7 @@
     </message>
     <message>
         <source>Category</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategoria</translation>
     </message>
 </context>
 <context>
@@ -114,7 +110,7 @@
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished">Haku</translation>
+        <translation>Haku</translation>
     </message>
 </context>
 <context>

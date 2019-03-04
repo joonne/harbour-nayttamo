@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import org.nemomobile.dbus 2.0
+import Nemo.DBus 2.0
 
 // Source: https://together.jolla.com/question/93323/harbour-api-request-keep-screen-onprevent-screen-blanking/?answer=154926#post-id-154926
 

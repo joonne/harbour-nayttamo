@@ -51,9 +51,9 @@ Page {
             }
 
             Label {
-                id: itemTitle
+                id: shortDescription
                 color: Theme.primaryColor
-                text: program.itemTitle != program.title ? qsTr("Episode") + ": " + program.itemTitle : ""
+                text: program.shortDescription
                 truncationMode: TruncationMode.Fade
                 visible: text !== ""
                 width: parent.width

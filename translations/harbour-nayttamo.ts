@@ -67,10 +67,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Episode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Program overview</source>
         <translation type="unfinished"></translation>
     </message>

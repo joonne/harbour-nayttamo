@@ -2,6 +2,7 @@
 
   Heavily inspired and/or copied from harbour-videoPlayer: https://github.com/llelectronics/videoPlayer
   original source file: https://github.com/llelectronics/videoPlayer/blob/master/qml/pages/helper/getsubtitles.js
+  Original source license: BSD (3-clause)
 
 **/
 
