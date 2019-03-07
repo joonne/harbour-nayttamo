@@ -63,6 +63,10 @@
         <source>This software is licenced mostly under MIT. Some parts of the application are licenced under the BSD.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Näyttämö</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CategoriesPage</name>

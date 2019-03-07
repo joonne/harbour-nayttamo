@@ -61,6 +61,10 @@
         <source>This software is licenced mostly under MIT. Some parts of the application are licenced under the BSD.</source>
         <translation>Denna programvara är licensierad mestadels under MIT. Vissa delar av ansökan är licensierade enligt BSD.</translation>
     </message>
+    <message>
+        <source>Näyttämö</source>
+        <translation>Näyttämö</translation>
+    </message>
 </context>
 <context>
     <name>CategoriesPage</name>
