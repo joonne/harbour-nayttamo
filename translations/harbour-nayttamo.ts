@@ -16,19 +16,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Native YLE Areena for Saifish OS</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Contributors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Licence</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>This software is licenced under MIT.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -61,6 +53,14 @@
     </message>
     <message>
         <source>Help with translations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Native YLE Areena for Sailfish OS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This software is licenced mostly under MIT. Some parts of the application are licenced under the BSD.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

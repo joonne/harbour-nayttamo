@@ -1,67 +1,65 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="fi">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="fi" version="2.1">
 <context>
     <name>AboutPage</name>
     <message>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Tietoa</translation>
     </message>
     <message>
         <source>Version %1.%2</source>
-        <translation type="unfinished"></translation>
+        <translation>Versio %1.%2</translation>
     </message>
     <message>
         <source>General</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Native YLE Areena for Saifish OS</source>
-        <translation type="unfinished"></translation>
+        <translation>Yleistä</translation>
     </message>
     <message>
         <source>Contributors</source>
-        <translation type="unfinished"></translation>
+        <translation>Avustajat</translation>
     </message>
     <message>
         <source>Licence</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>This software is licenced under MIT.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lisenssi</translation>
     </message>
     <message>
         <source>Content</source>
-        <translation type="unfinished"></translation>
+        <translation>Sisältö</translation>
     </message>
     <message>
         <source>Näyttämö utilises YLE API</source>
-        <translation type="unfinished"></translation>
+        <translation>Näyttämö käyttää YLE APIa</translation>
     </message>
     <message>
         <source>Source Code</source>
-        <translation type="unfinished"></translation>
+        <translation>Lähdekoodi</translation>
     </message>
     <message>
         <source>The source code is available at GitHub. Contributions, ideas and bug reports are welcome.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lähdekoodi on saatavilla GitHub-palvelussa. Apu, ideat ja virheraportit ovat tervetulleita.</translation>
     </message>
     <message>
         <source>Project in GitHub</source>
-        <translation type="unfinished"></translation>
+        <translation>Projekti GitHubissa</translation>
     </message>
     <message>
         <source>Translations</source>
-        <translation type="unfinished"></translation>
+        <translation>Käännökset</translation>
     </message>
     <message>
         <source>Näyttämö uses the Transifex translation platform to host the translations.</source>
-        <translation type="unfinished"></translation>
+        <translation>Näyttämö käyttää Transifex-käännöspalvelua.</translation>
     </message>
     <message>
         <source>Help with translations</source>
-        <translation type="unfinished"></translation>
+        <translation>Auta käännösten kanssa</translation>
+    </message>
+    <message>
+        <source>Native YLE Areena for Sailfish OS</source>
+        <translation>Natiivi YLE Areena Sailfish OS:lle</translation>
+    </message>
+    <message>
+        <source>This software is licenced mostly under MIT. Some parts of the application are licenced under the BSD.</source>
+        <translation>Tämä ohjelmisto on lisensoitu pääasiassa MIT:n mukaisesti. Jotkin osat sovelluksesta on lisensoitu BSD:n mukaisesti.</translation>
     </message>
 </context>
 <context>
@@ -98,7 +96,7 @@
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Tietoa</translation>
     </message>
 </context>
 <context>
