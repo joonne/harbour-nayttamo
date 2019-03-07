@@ -32,7 +32,7 @@ Page {
 
             Label {
                 id: appname
-                text: "Näyttämö"
+                text: qsTr("Näyttämö")
                 anchors.left: parent.left
                 anchors.leftMargin: (aboutpage.width - appname.width) / 2
                 color: Theme.primaryColor
@@ -54,6 +54,7 @@ Page {
             }
 
             TextArea {
+                id: description
                 width: aboutpage.width
                 readOnly: true
                 color: Theme.primaryColor
@@ -71,12 +72,13 @@ Page {
 
                 model: ["joonne", "mlehtima"]
 
-                TextField {
+                Label {
                     width: aboutpage.width
-                    readOnly: true
                     color: Theme.primaryColor
                     font.pixelSize: Theme.fontSizeSmall
                     text: modelData
+                    anchors.left: parent.left
+                    anchors.leftMargin: Theme.horizontalPageMargin
                 }
             }
 
@@ -149,7 +151,7 @@ Page {
                 text: qsTr("Help with translations")
                 onClicked: Qt.openUrlExternally("https://www.transifex.com/joonne/nayttamo/")
                 anchors.left: parent.left
-                anchors.leftMargin: (aboutpage.width - sourcecode.width) / 2
+                anchors.leftMargin: (aboutpage.width - transifex.width) / 2
             }
 
             HorizontalSeparator { }
