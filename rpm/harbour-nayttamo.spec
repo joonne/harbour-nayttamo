@@ -16,8 +16,8 @@ Summary:    harbour-nayttamo
 Version:    0.1
 Release:    1
 Group:      Qt/Qt
-License:    LICENSE
-URL:        http://example.org/
+License:    MIT and BSD
+URL:        https://github.com/joonne/harbour-nayttamo
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-nayttamo.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9
@@ -29,7 +29,7 @@ BuildRequires:  pkgconfig(libcrypto)
 BuildRequires:  desktop-file-utils
 
 %description
-Short description of my Sailfish OS Application
+Native YLE Areena application for Sailfish OS
 
 
 %prep
