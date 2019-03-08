@@ -24,6 +24,8 @@ Page {
                 id: icon
                 source: "image://theme/harbour-nayttamo"
                 anchors.horizontalCenter: parent.horizontalCenter
+                width: Theme.iconSizeLarge
+                height: Theme.iconSizeLarge
             }
 
             Label {
