@@ -1,7 +1,5 @@
-import QtQuick 2.0
+import QtQuick 2.6
 import Sailfish.Silica 1.0
-
-import '../components'
 
 Page {
     id: aboutpage
@@ -16,6 +14,7 @@ Page {
         Column {
             id: column
             width: parent.width
+            bottomPadding: Theme.horizontalPageMargin
 
             PageHeader {
                 title: qsTr("About")
@@ -24,30 +23,23 @@ Page {
             Image {
                 id: icon
                 source: "image://theme/harbour-nayttamo"
-                anchors.left: parent.left
-                anchors.leftMargin: (aboutpage.width - icon.width) / 2
+                anchors.horizontalCenter: parent.horizontalCenter
             }
-
-            HorizontalSeparator { }
 
             Label {
                 id: appname
                 text: qsTr("Näyttämö")
-                anchors.left: parent.left
-                anchors.leftMargin: (aboutpage.width - appname.width) / 2
+                anchors.horizontalCenter: parent.horizontalCenter
                 color: Theme.primaryColor
             }
 
             Label {
                 id: version
                 text: qsTr("Version %1.%2").arg(_APP_VERSION).arg(_APP_BUILD_NUMBER)
-                anchors.left: parent.left
-                anchors.leftMargin: (aboutpage.width - version.width) / 2
+                anchors.horizontalCenter: parent.horizontalCenter
                 color: Theme.primaryColor
                 font.pixelSize: Theme.fontSizeExtraSmall
             }
-
-            HorizontalSeparator { }
 
             SectionHeader {
                 text: qsTr("General")
@@ -61,8 +53,6 @@ Page {
                 font.pixelSize: Theme.fontSizeSmall
                 text: qsTr("Native YLE Areena for Sailfish OS")
             }
-
-            HorizontalSeparator { }
 
             SectionHeader {
                 text: qsTr("Contributors")
@@ -110,8 +100,7 @@ Page {
                 id: yledeveloper
                 text: "YLE API"
                 onClicked: Qt.openUrlExternally("https://developer.yle.fi/")
-                anchors.left: parent.left
-                anchors.leftMargin: (aboutpage.width - yledeveloper.width) / 2
+                anchors.horizontalCenter: parent.horizontalCenter
             }
 
             SectionHeader {
@@ -130,8 +119,7 @@ Page {
                 id: sourcecode
                 text: qsTr("Project in GitHub")
                 onClicked: Qt.openUrlExternally("https://github.com/joonne/harbour-nayttamo")
-                anchors.left: parent.left
-                anchors.leftMargin: (aboutpage.width - sourcecode.width) / 2
+                anchors.horizontalCenter: parent.horizontalCenter
             }
 
             SectionHeader {
@@ -150,11 +138,8 @@ Page {
                 id: transifex
                 text: qsTr("Help with translations")
                 onClicked: Qt.openUrlExternally("https://www.transifex.com/joonne/nayttamo/")
-                anchors.left: parent.left
-                anchors.leftMargin: (aboutpage.width - transifex.width) / 2
+                anchors.horizontalCenter: parent.horizontalCenter
             }
-
-            HorizontalSeparator { }
         }
 
         VerticalScrollDecorator { }

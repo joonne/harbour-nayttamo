@@ -50,8 +50,7 @@ DISTFILES += \
     qml/pages/SearchPage.qml \
     qml/pages/ProgramOverviewPage.qml \
     qml/main.qml \
-    qml/pages/AboutPage.qml \
-    qml/components/HorizontalSeparator.qml
+    qml/pages/AboutPage.qml
 
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 DEFINES += APP_BUILDNUM=\\\"$$RELEASE\\\"
