@@ -17,6 +17,9 @@ Configure: none
 # The qtc5 builder inserts macros to allow QtCreator to have fine
 # control over qmake/make execution
 Builder: qtc5
+QMakeOptions:
+- VERSION=%{version}
+- RELEASE=%{release}
 
 # This section specifies build dependencies that are resolved using pkgconfig.
 # This is the preferred way of specifying build dependencies for your package.
@@ -25,6 +28,7 @@ PkgConfigBR:
   - Qt5Core
   - Qt5Qml
   - Qt5Quick
+  - libcrypto
 
 # Build dependencies without a pkgconfig setup can be listed here
 # PkgBR:
