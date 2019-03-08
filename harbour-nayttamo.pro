@@ -49,7 +49,8 @@ DISTFILES += \
     qml/pages/PlayerPage.qml \
     qml/pages/SearchPage.qml \
     qml/pages/ProgramOverviewPage.qml \
-    qml/main.qml
+    qml/main.qml \
+    qml/pages/AboutPage.qml
 
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 DEFINES += APP_BUILDNUM=\\\"$$RELEASE\\\"

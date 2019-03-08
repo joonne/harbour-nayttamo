@@ -2,6 +2,73 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
+    <name>AboutPage</name>
+    <message>
+        <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Version %1.%2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contributors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Licence</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Näyttämö utilises YLE API</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Source Code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The source code is available at GitHub. Contributions, ideas and bug reports are welcome.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Project in GitHub</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Translations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Näyttämö uses the Transifex translation platform to host the translations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Help with translations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Native YLE Areena for Sailfish OS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This software is licenced mostly under MIT. Some parts of the application are licenced under the BSD.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Näyttämö</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CategoriesPage</name>
     <message>
         <source>Categories</source>
@@ -31,6 +98,10 @@
     </message>
     <message>
         <source>Show program info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

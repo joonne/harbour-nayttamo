@@ -2,6 +2,73 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="fi">
 <context>
+    <name>AboutPage</name>
+    <message>
+        <source>About</source>
+        <translation>Tietoa</translation>
+    </message>
+    <message>
+        <source>Version %1.%2</source>
+        <translation>Versio %1.%2</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Yleistä</translation>
+    </message>
+    <message>
+        <source>Contributors</source>
+        <translation>Avustajat</translation>
+    </message>
+    <message>
+        <source>Licence</source>
+        <translation>Lisenssi</translation>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation>Sisältö</translation>
+    </message>
+    <message>
+        <source>Näyttämö utilises YLE API</source>
+        <translation>Näyttämö käyttää YLE APIa</translation>
+    </message>
+    <message>
+        <source>Source Code</source>
+        <translation>Lähdekoodi</translation>
+    </message>
+    <message>
+        <source>The source code is available at GitHub. Contributions, ideas and bug reports are welcome.</source>
+        <translation>Lähdekoodi on saatavilla GitHub-palvelussa. Apu, ideat ja virheraportit ovat tervetulleita.</translation>
+    </message>
+    <message>
+        <source>Project in GitHub</source>
+        <translation>Projekti GitHubissa</translation>
+    </message>
+    <message>
+        <source>Translations</source>
+        <translation>Käännökset</translation>
+    </message>
+    <message>
+        <source>Näyttämö uses the Transifex translation platform to host the translations.</source>
+        <translation>Näyttämö käyttää Transifex-käännöspalvelua.</translation>
+    </message>
+    <message>
+        <source>Help with translations</source>
+        <translation>Auta käännösten kanssa</translation>
+    </message>
+    <message>
+        <source>Native YLE Areena for Sailfish OS</source>
+        <translation>Natiivi YLE Areena Sailfish OS:lle</translation>
+    </message>
+    <message>
+        <source>This software is licenced mostly under MIT. Some parts of the application are licenced under the BSD.</source>
+        <translation>Tämä ohjelmisto on lisensoitu pääasiassa MIT:n mukaisesti. Jotkin osat sovelluksesta on lisensoitu BSD:n mukaisesti.</translation>
+    </message>
+    <message>
+        <source>Näyttämö</source>
+        <translation>Näyttämö</translation>
+    </message>
+</context>
+<context>
     <name>CategoriesPage</name>
     <message>
         <source>Categories</source>
@@ -32,6 +99,10 @@
     <message>
         <source>Show program info</source>
         <translation>Näytä ohjelman tiedot</translation>
+    </message>
+    <message>
+        <source>About</source>
+        <translation>Tietoa</translation>
     </message>
 </context>
 <context>

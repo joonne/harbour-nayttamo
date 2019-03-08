@@ -2,6 +2,73 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="sv">
 <context>
+    <name>AboutPage</name>
+    <message>
+        <source>About</source>
+        <translation>Info</translation>
+    </message>
+    <message>
+        <source>Version %1.%2</source>
+        <translation>Version %1.%2</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Allmän</translation>
+    </message>
+    <message>
+        <source>Contributors</source>
+        <translation>Medarbetares</translation>
+    </message>
+    <message>
+        <source>Licence</source>
+        <translation>Licens</translation>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation>Innehåll</translation>
+    </message>
+    <message>
+        <source>Näyttämö utilises YLE API</source>
+        <translation>Näyttämö använder YLE API</translation>
+    </message>
+    <message>
+        <source>Source Code</source>
+        <translation>Källkod</translation>
+    </message>
+    <message>
+        <source>The source code is available at GitHub. Contributions, ideas and bug reports are welcome.</source>
+        <translation>Källkoden är tillgänglig på GitHub. Bidrag, idéer och felrapporter är välkomna.</translation>
+    </message>
+    <message>
+        <source>Project in GitHub</source>
+        <translation>Projekt i GitHub</translation>
+    </message>
+    <message>
+        <source>Translations</source>
+        <translation>Översättningar</translation>
+    </message>
+    <message>
+        <source>Näyttämö uses the Transifex translation platform to host the translations.</source>
+        <translation>Näyttämö använder översättningsplattformen Transifex för att vara värd för översättningarna.</translation>
+    </message>
+    <message>
+        <source>Help with translations</source>
+        <translation>Hjälp med översättningar</translation>
+    </message>
+    <message>
+        <source>Native YLE Areena for Sailfish OS</source>
+        <translation>Native YLE Areena för Sailfish OS</translation>
+    </message>
+    <message>
+        <source>This software is licenced mostly under MIT. Some parts of the application are licenced under the BSD.</source>
+        <translation>Denna programvara är licensierad mestadels under MIT. Vissa delar av ansökan är licensierade enligt BSD.</translation>
+    </message>
+    <message>
+        <source>Näyttämö</source>
+        <translation>Näyttämö</translation>
+    </message>
+</context>
+<context>
     <name>CategoriesPage</name>
     <message>
         <source>Categories</source>
@@ -32,6 +99,10 @@
     <message>
         <source>Show program info</source>
         <translation>Visa programinformation</translation>
+    </message>
+    <message>
+        <source>About</source>
+        <translation>Info</translation>
     </message>
 </context>
 <context>
