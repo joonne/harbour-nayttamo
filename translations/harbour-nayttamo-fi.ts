@@ -104,6 +104,10 @@
         <source>About</source>
         <translation>Tietoa</translation>
     </message>
+    <message>
+        <source>No current broadcasts</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PlayerPage</name>

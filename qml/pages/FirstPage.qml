@@ -89,6 +89,12 @@ Page {
                                           })
             }
             VerticalScrollDecorator {}
+
+            ViewPlaceholder {
+                enabled: listView.count === 0
+                text: qsTr("No current broadcasts")
+                anchors.centerIn: listView
+            }
         }
     }
 }
