@@ -22,7 +22,11 @@ Page {
 
     Connections {
         target: mediaPlayer
-        onPositionChanged: subtitlesText && subtitlesText.checkSubtitles()
+        onPositionChanged: {
+            if (page && page.subtitles && subtitlesText) {
+                subtitlesText && subtitlesText.checkSubtitles()
+            }
+        }
     }
 
     onVisibleChanged: {
@@ -32,8 +36,10 @@ Page {
     function initialize() {
         YleApi.getMediaUrl(program.id, program.mediaId)
             .then(function(response) {
-                subtitlesUrl = response.subtitlesUrl
-                subtitlesText.getSubtitles(subtitlesUrl)
+                if (response.subtitlesUrl && subtitlesText) {
+                    subtitlesUrl = response.subtitlesUrl
+                    subtitlesText.getSubtitles(subtitlesUrl)
+                }
                 mediaPlayer.source = response.url
                 mediaPlayer.play()
                 YleApi.reportUsage(program.id, program.mediaId)
@@ -108,7 +114,9 @@ Page {
                             ? mediaPlayer.pause()
                             : mediaPlayer.play()
 
-                        subtitlesText.getSubtitles(subtitlesUrl)
+                        if (subtitlesUrl && subtitlesText) {
+                            subtitlesText.getSubtitles(subtitlesUrl)
+                        }
                     }
                 }
             }
