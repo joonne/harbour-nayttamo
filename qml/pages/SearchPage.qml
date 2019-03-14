@@ -7,6 +7,7 @@ Page {
     id: searchpage
     property int offset: 0
     property int limit: 25
+    property bool programsEnd: false
 
     // The effective value will be restricted by ApplicationWindow.allowedOrientations
     allowedOrientations: Orientation.All
@@ -15,17 +16,23 @@ Page {
         if (visible) updateCover(qsTr("Search"), searchField.text, "")
     }
     Component.onDestruction: {
-        listView.model = []
+        listView.model.clear()
     }
 
     function search(text) {
         updateCover(qsTr("Search"), searchField.text, "")
         YleApi.search(searchField.text, limit, offset)
             .then(function(programs) {
-                listView.model = programs
+                if (programs.length < limit) {
+                    programsEnd = true
+                }
+
+                for (var i = 0; i < programs.length; i++) {
+                    listView.model.append({value: programs[i]});
+                }
             })
             .catch(function() {
-                listView.model = []
+                listView.model.clear()
             })
     }
 
@@ -44,15 +51,19 @@ Page {
         }
         placeholderText: qsTr("Search for a program")
         EnterKey.onClicked: {
+            textDebounce.stop()
             search(text)
             focus = false
         }
 
         onTextChanged: {
             if (text.length > 0) {
+                offset = 0;
+                listView.model.clear();
                 textDebounce.start()
             } else {
-                listView.model = []
+                offset = 0;
+                listView.model.clear();
             }
         }
     }
@@ -60,32 +71,16 @@ Page {
     SilicaListView {
         id: listView
         anchors.top: searchField.bottom
+        currentIndex: -1
         height: (searchpage.height - searchField.height - Theme.paddingLarge)
         width: searchpage.width
         clip: true
-        model: []
+        model: ListModel { id: programsModel }
 
-        PullDownMenu {
-            MenuItem {
-                text: qsTr("Previous page")
-                enabled: offset > 0
-                onClicked: {
-                    console.log("Previous page")
-                    offset -= limit;
-                    getPrograms();
-                }
-            }
-        }
-
-        PushUpMenu {
-            MenuItem {
-                text: qsTr("Next page")
-                enabled: listView.count === limit
-                onClicked: {
-                    console.log("Next page", listView.count, offset, limit)
-                    offset += limit;
-                    search(searchField.text);
-                }
+        onAtYEndChanged: {
+            if (atYEnd && listView.count > 0 && !programsEnd) {
+                offset += limit;
+                search(searchField.text);
             }
         }
 

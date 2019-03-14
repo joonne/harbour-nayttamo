@@ -145,19 +145,11 @@
 <context>
     <name>ProgramsPage</name>
     <message>
-        <source>Programs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Previous page</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Next page</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Programs</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -169,14 +161,6 @@
     </message>
     <message>
         <source>Here will be stuff when you search for something</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Previous page</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Next page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

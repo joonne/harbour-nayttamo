@@ -145,20 +145,12 @@
 <context>
     <name>ProgramsPage</name>
     <message>
-        <source>Programs</source>
-        <translation>Ohjelmat</translation>
-    </message>
-    <message>
-        <source>Previous page</source>
-        <translation>Edellinen sivu</translation>
-    </message>
-    <message>
-        <source>Next page</source>
-        <translation>Seuraava sivu</translation>
-    </message>
-    <message>
         <source>Category</source>
-        <translation>Kategoria</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Programs</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -170,14 +162,6 @@
     <message>
         <source>Here will be stuff when you search for something</source>
         <translation>Tänne ilmestyy tavaraa kun etsit jotain</translation>
-    </message>
-    <message>
-        <source>Previous page</source>
-        <translation>Edellinen sivu</translation>
-    </message>
-    <message>
-        <source>Next page</source>
-        <translation>Seuraava sivu</translation>
     </message>
     <message>
         <source>Search</source>
