@@ -64,6 +64,11 @@ Page {
         repeat: false
     }
 
+    Rectangle {
+        anchors.fill: parent
+        color: "black"
+    }
+
     VideoOutput {
         id: videoOutput
         width : parent.width
