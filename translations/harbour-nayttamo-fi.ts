@@ -108,6 +108,10 @@
         <source>No current broadcasts</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Show programs in series</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PlayerPage</name>
@@ -125,6 +129,10 @@
     <message>
         <source>Show program info</source>
         <translation>Näytä ohjelman tiedot</translation>
+    </message>
+    <message>
+        <source>Show programs in series</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -154,6 +162,10 @@
     </message>
     <message>
         <source>Programs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Series</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
