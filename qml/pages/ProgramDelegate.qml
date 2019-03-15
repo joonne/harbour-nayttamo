@@ -35,7 +35,7 @@ ListItem {
                 sourceSize.height: parent.height
                 source: modelData.image && modelData.image.id && modelData.image.available
                         ? "http://images.cdn.yle.fi/image/upload/w_" + parent.width + ",h_" + parent.height + ",c_fit/" + modelData.image.id + ".jpg"
-                        : null
+                        : ""
             }
             anchors.left: parent.left
         }

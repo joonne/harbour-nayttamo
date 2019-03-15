@@ -119,7 +119,7 @@ var api = (function(appId, appKey) {
      }
 
      function getProgramsByCategoryId(categoryId, limit, offset) {
-         var url = apiUrl + programsUrl + '&category=' + categoryId + '&availability=ondemand&mediaobject=video&offset=' + offset + '&limit=' + limit;
+         var url = apiUrl + programsUrl + '&category=' + categoryId + '&contentprotection=22-0,22-1&availability=ondemand&mediaobject=video&offset=' + offset + '&limit=' + limit;
          return HTTP.get(url)
              .then(function(response) { return response.data; })
              .then(filterAvailablePrograms)
@@ -164,7 +164,7 @@ var api = (function(appId, appKey) {
      }
 
      function search(text, limit, offset) {
-         var url = apiUrl + programsUrl + '&availability=ondemand&mediaobject=video' + '&q=' + text + '&offset=' + offset + '&limit=' + limit;
+         var url = apiUrl + programsUrl + '&contentprotection=22-0,22-1&availability=ondemand&mediaobject=video' + '&q=' + text + '&offset=' + offset + '&limit=' + limit;
          return HTTP.get(url)
              .then(function(response) { return response.data; })
              .then(filterAvailablePrograms)
