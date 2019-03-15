@@ -9,21 +9,26 @@ Page {
     property var category: ({})
     property int offset: 0
     property int limit: 25
+    property bool programsEnd: false
 
     function getPrograms() {
         YleApi.getProgramsByCategoryId(category.id, limit, offset)
             .then(function(programs) {
-                console.log('programs', programs)
-                listView.model = programs
+                if (programs.length < limit) {
+                    programsEnd = true
+                }
+
+                for (var i = 0; i < programs.length; i++) {
+                    listView.model.append({value: programs[i]});
+                }
             })
             .catch(function(error) {
                 console.log('error', error)
-                listView.model = []
             })
     }
 
     Component.onCompleted: {
-        console.log(category)
+        console.log(category.title)
         getPrograms();
     }
 
@@ -36,33 +41,17 @@ Page {
 
     SilicaListView {
         id: listView
-        model: []
+        model: ListModel { id: programsModel }
+        currentIndex: -1
         anchors.fill: parent
         header: PageHeader {
             title: qsTr("Programs")
         }
 
-        PullDownMenu {
-            MenuItem {
-                text: qsTr("Previous page")
-                enabled: offset > 0
-                onClicked: {
-                    console.log("Previous page")
-                    offset -= limit;
-                    getPrograms();
-                }
-            }
-        }
-
-        PushUpMenu {
-            MenuItem {
-                text: qsTr("Next page")
-                enabled: listView.count === limit
-                onClicked: {
-                    console.log("Next page", listView.count, offset, limit)
-                    offset += limit;
-                    getPrograms();
-                }
+        onAtYEndChanged: {
+            if (atYEnd && listView.count > 0 && !programsEnd) {
+                offset += limit;
+                getPrograms();
             }
         }
 
