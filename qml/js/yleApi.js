@@ -26,7 +26,7 @@ var api = (function(appId, appKey) {
      var filterAvailablePrograms = function(programs) {
          return programs.reduce(function(acc, program) {
              var foundPublicationEvents = program.publicationEvent.filter(function(event) {
-                 return event.temporalStatus === "currently" && event.type === "OnDemandPublication";
+                 return event.temporalStatus === "currently" && event.type === "OnDemandPublication" && event.media && event.media.available;
              });
 
              if (foundPublicationEvents.length) {
