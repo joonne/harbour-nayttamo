@@ -106,11 +106,11 @@
     </message>
     <message>
         <source>No current broadcasts</source>
-        <translation type="unfinished"></translation>
+        <translation>Nu spelas ingenting</translation>
     </message>
     <message>
         <source>Show programs in series</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa program i serie</translation>
     </message>
 </context>
 <context>
@@ -132,7 +132,7 @@
     </message>
     <message>
         <source>Show programs in series</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa program i serie</translation>
     </message>
 </context>
 <context>
@@ -158,15 +158,15 @@
     <name>ProgramsPage</name>
     <message>
         <source>Category</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategori</translation>
     </message>
     <message>
         <source>Programs</source>
-        <translation type="unfinished"></translation>
+        <translation>Program</translation>
     </message>
     <message>
         <source>Series</source>
-        <translation type="unfinished"></translation>
+        <translation>Serie</translation>
     </message>
 </context>
 <context>
