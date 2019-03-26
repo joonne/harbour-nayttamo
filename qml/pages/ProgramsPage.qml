@@ -7,33 +7,44 @@ Page {
     id: page
 
     property var category: ({})
+    property var series: ({})
+
     property int offset: 0
     property int limit: 25
     property bool programsEnd: false
 
-    function getPrograms() {
-        YleApi.getProgramsByCategoryId(category.id, limit, offset)
-            .then(function(programs) {
-                if (programs.length < limit) {
-                    programsEnd = true
-                }
+    function appendProgramsToList(programs) {
+        if (programs.length < limit) {
+            programsEnd = true
+        }
 
-                for (var i = 0; i < programs.length; i++) {
-                    listView.model.append({value: programs[i]});
-                }
-            })
-            .catch(function(error) {
-                console.log('error', error)
-            })
+        for (var i = 0; i < programs.length; i++) {
+            listView.model.append({value: programs[i]});
+        }
+    }
+
+    function getPrograms() {
+        if (category.id) {
+            YleApi.getProgramsByCategoryId(category.id, limit, offset)
+                .then(appendProgramsToList)
+                .catch(function(error) {
+                    console.log('error', error)
+                })
+        } else if (series.seriesId) {
+            YleApi.getProgramsBySeriesId(series.seriesId, limit, offset)
+                .then(appendProgramsToList)
+                .catch(function(error) {
+                    console.log('error', error)
+                })
+        }
     }
 
     Component.onCompleted: {
-        console.log(category.title)
         getPrograms();
     }
 
     onVisibleChanged: {
-        if (visible) updateCover(qsTr("Category"), category.title, "")
+        if (visible) updateCover(category.title ? qsTr("Category") : qsTr("Series"), category.title ? category.title : series.title, "")
     }
 
     // The effective value will be restricted by ApplicationWindow.allowedOrientations

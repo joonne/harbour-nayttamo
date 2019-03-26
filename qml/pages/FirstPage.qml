@@ -62,6 +62,14 @@ Page {
                                            })
                         }
                     }
+                    MenuItem {
+                        visible: Boolean(modelData.seriesId)
+                        text: qsTr("Show programs in series")
+
+                        onClicked: pageStack.push(Qt.resolvedUrl("ProgramsPage.qml"), {
+                                                      "series": modelData
+                                                  })
+                    }
                 }
 
                 Column {
@@ -93,9 +101,7 @@ Page {
             ViewPlaceholder {
                 enabled: listView.count === 0
                 text: qsTr("No current broadcasts")
-                anchors.centerIn: listView
             }
         }
     }
 }
-

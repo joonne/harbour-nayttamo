@@ -8,7 +8,7 @@ var api = (function(appId, appKey) {
      // .env -> qmake -> DEFINES -> setContextProperty
      var credentials = "app_id=" + appId + "&app_key=" + appKey;
 
-     var programsUrl = "/programs/items.json?" + credentials;
+     var programsUrl = "/programs/items.json?" + credentials + "&contentprotection=22-0,22-1&availability=ondemand&mediaobject=video";
      var categoriesUrl = "/programs/categories.json?" + credentials;
      var programDetailsUrl = "/programs/items/1-820561.json" + "?" + credentials;
      var mediaUrl = "/media/playouts.json?"+ credentials;
@@ -26,7 +26,7 @@ var api = (function(appId, appKey) {
      var filterAvailablePrograms = function(programs) {
          return programs.reduce(function(acc, program) {
              var foundPublicationEvents = program.publicationEvent.filter(function(event) {
-                 return event.temporalStatus === "currently" && event.type === "OnDemandPublication";
+                 return event.temporalStatus === "currently" && event.type === "OnDemandPublication" && event.media && event.media.available;
              });
 
              if (foundPublicationEvents.length) {
@@ -108,7 +108,7 @@ var api = (function(appId, appKey) {
                                ? program.partOfSeason.seasonNumber
                                : "",
                  episodeNumber: program.episodeNumber ? program.episodeNumber : "",
-                 seriesId: program.partOfSeason && program.partOfSeason.id,
+                 seriesId: program.partOfSeries && program.partOfSeries.id
               };
          });
      }
@@ -119,7 +119,15 @@ var api = (function(appId, appKey) {
      }
 
      function getProgramsByCategoryId(categoryId, limit, offset) {
-         var url = apiUrl + programsUrl + '&category=' + categoryId + '&contentprotection=22-0,22-1&availability=ondemand&mediaobject=video&offset=' + offset + '&limit=' + limit;
+         var url = apiUrl + programsUrl + '&category=' + categoryId + '&offset=' + offset + '&limit=' + limit;
+         return HTTP.get(url)
+             .then(function(response) { return response.data; })
+             .then(filterAvailablePrograms)
+             .then(mapPrograms);
+     }
+
+     function getProgramsBySeriesId(seriesId, limit, offset) {
+         var url = apiUrl + programsUrl + '&series=' + seriesId + '&offset=' + offset + '&limit=' + limit;
          return HTTP.get(url)
              .then(function(response) { return response.data; })
              .then(filterAvailablePrograms)
@@ -164,7 +172,7 @@ var api = (function(appId, appKey) {
      }
 
      function search(text, limit, offset) {
-         var url = apiUrl + programsUrl + '&contentprotection=22-0,22-1&availability=ondemand&mediaobject=video' + '&q=' + text + '&offset=' + offset + '&limit=' + limit;
+         var url = apiUrl + programsUrl + '&q=' + text + '&offset=' + offset + '&limit=' + limit;
          return HTTP.get(url)
              .then(function(response) { return response.data; })
              .then(filterAvailablePrograms)
@@ -225,6 +233,7 @@ var api = (function(appId, appKey) {
          reportUsage: reportUsage,
          getProgramById: getProgramById,
          getProgramsByCategoryId: getProgramsByCategoryId,
+         getProgramsBySeriesId: getProgramsBySeriesId,
          search: search,
      };
  })(appId, appKey);
@@ -237,4 +246,5 @@ function getMediaUrl() { return api.getMediaUrl.apply(null, arguments) };
 function reportUsage() { return api.reportUsage.apply(null, arguments) };
 function getProgramById() { return api.getProgramById.apply(null, arguments) };
 function getProgramsByCategoryId() { return api.getProgramsByCategoryId.apply(null, arguments) };
+function getProgramsBySeriesId() { return api.getProgramsBySeriesId.apply(null, arguments) };
 function search() { return api.search.apply(null, arguments) };

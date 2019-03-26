@@ -42,17 +42,23 @@ Page {
         onTriggered: search(searchField.text)
     }
 
+    PageHeader {
+        id: pageHeader
+        title: qsTr("Search")
+    }
+
     SearchField {
         id: searchField
         width: searchpage.width
         anchors {
-            top: searchpage.top
-            topMargin: (Theme.paddingLarge * 4)
+            top: pageHeader.bottom
         }
         placeholderText: qsTr("Search for a program")
         EnterKey.onClicked: {
-            textDebounce.stop()
-            search(text)
+            if (textDebounce.running) {
+                textDebounce.stop()
+                search(text)
+            }
             focus = false
         }
 
@@ -60,7 +66,7 @@ Page {
             if (text.length > 0) {
                 offset = 0;
                 listView.model.clear();
-                textDebounce.start()
+                textDebounce.restart()
             } else {
                 offset = 0;
                 listView.model.clear();
@@ -68,11 +74,16 @@ Page {
         }
     }
 
+    ViewPlaceholder {
+        enabled: listView.count === 0
+        text: qsTr("Here will be stuff when you search for something")
+    }
+
     SilicaListView {
         id: listView
         anchors.top: searchField.bottom
         currentIndex: -1
-        height: (searchpage.height - searchField.height - Theme.paddingLarge)
+        height: (searchpage.height - pageHeader.height - searchField.height)
         width: searchpage.width
         clip: true
         model: ListModel { id: programsModel }
@@ -88,12 +99,6 @@ Page {
 
         VerticalScrollDecorator {
             id: decorator
-        }
-
-        ViewPlaceholder {
-            enabled: listView.count === 0
-            text: qsTr("Here will be stuff when you search for something")
-            anchors.centerIn: listView
         }
     }
 }

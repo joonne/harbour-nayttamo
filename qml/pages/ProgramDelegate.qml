@@ -15,6 +15,14 @@ ListItem {
                                           "program": modelData
                                       })
         }
+        MenuItem {
+            visible: Boolean(modelData.seriesId)
+            text: qsTr("Show programs in series")
+
+            onClicked: pageStack.push(Qt.resolvedUrl("ProgramsPage.qml"), {
+                                          "series": modelData
+                                      })
+        }
     }
 
     Item {

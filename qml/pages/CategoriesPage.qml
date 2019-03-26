@@ -9,7 +9,6 @@ Page {
     Component.onCompleted: {
         YleApi.getCategories()
             .then(function(categories) {
-                console.log('categories', JSON.stringify(categories))
                 listView.model = categories;
             })
             .catch(function(error) {
