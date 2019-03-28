@@ -165,7 +165,7 @@ var api = (function(appId, appKey) {
          return HTTP.get(url)
              .then(function(res) {
                  return {
-                     subtitlesUrl: findSubtitlesUrlByLanguage("fi", res.data[0].subtitles),
+                     subtitlesUrl: res.data && res.data[0] && res.data[0].subtitles && findSubtitlesUrlByLanguage("fi", res.data[0].subtitles) || '',
                      url: decryptUrl(res.data[0].url),
                  };
              });
@@ -224,6 +224,60 @@ var api = (function(appId, appKey) {
              });
      }
 
+    function getRadioServices() {
+        var radioChannelsUrl = [apiUrl, servicesUrl, "&type=radiochannel"].join("");
+
+        return HTTP.get(radioChannelsUrl)
+            .then(function(response) { return response.data; })
+            .then(function(services) { return services.map(function(service) { return service.id; }) })
+            .catch(handleError("getRadioServices", function() { return []; }));
+    }
+
+    function getNowPlayingRadioPrograms() {
+        function getNowPlayingRadioProgramUrl(id) {
+            return [apiUrl, "/programs/nowplaying/", id, ".json", "?", credentials].join("");
+        }
+
+        function resolvePromise(promise) {
+            return promise
+                .then(function(result) { return result })
+                .catch(function(error) { return {} });
+        }
+
+        return getRadioServices()
+            .then(function(services) {
+                return Promise.all(services.map(function(service) {
+                    var url = getNowPlayingRadioProgramUrl(service);
+                    return resolvePromise(HTTP.get(url));
+                }));
+            })
+            .then(function(results) {
+                return results.reduce(function(allServices, result) {
+                    return allServices.concat(result.data || []);
+                }, []);
+            })
+            .then(function(allServices) {
+                return allServices.filter(function(service) {
+                    return service.delta === "1";
+                });
+            })
+            .then(function(programs) {
+                return Promise.all(programs.map(function(program) {
+                    var programId = program && program.service && program.service.id;
+                    var mediaId = program && program.service && program.service.outlet && program.service.outlet.length && program.service.outlet[0] && program.service.outlet[0].media && program.service.outlet[0].media.id;
+                    console.log(programId, mediaId);
+                    if (!programId || !mediaId) return Promise.resolve(program);
+                    return getMediaUrl(programId, mediaId)
+                        .then(function(result) {
+                            program.mediaUrl = result;
+                            return program;
+                        })
+                        .catch(function(error) { console.log(JSON.stringify(error, null, 2)); return program; });
+                }));
+            })
+            .catch(handleError("getNowPlayingRadioPrograms", function() { return []; }));
+    }
+
      return {
          formatTime: formatTime,
          formatProgramDetails: formatProgramDetails,
@@ -235,16 +289,18 @@ var api = (function(appId, appKey) {
          getProgramsByCategoryId: getProgramsByCategoryId,
          getProgramsBySeriesId: getProgramsBySeriesId,
          search: search,
+         getNowPlayingRadioPrograms: getNowPlayingRadioPrograms,
      };
  })(appId, appKey);
 
-function formatTime() { return api.formatTime.apply(null, arguments) };
-function formatProgramDetails() { return api.formatProgramDetails.apply(null, arguments) };
-function getCategories() { return api.getCategories.apply(null, arguments) };
-function getCurrentBroadcasts() { return api.getCurrentBroadcasts.apply(null, arguments) };
-function getMediaUrl() { return api.getMediaUrl.apply(null, arguments) };
-function reportUsage() { return api.reportUsage.apply(null, arguments) };
-function getProgramById() { return api.getProgramById.apply(null, arguments) };
-function getProgramsByCategoryId() { return api.getProgramsByCategoryId.apply(null, arguments) };
-function getProgramsBySeriesId() { return api.getProgramsBySeriesId.apply(null, arguments) };
-function search() { return api.search.apply(null, arguments) };
+function formatTime() { return api.formatTime.apply(null, arguments); }
+function formatProgramDetails() { return api.formatProgramDetails.apply(null, arguments); }
+function getCategories() { return api.getCategories.apply(null, arguments); }
+function getCurrentBroadcasts() { return api.getCurrentBroadcasts.apply(null, arguments); }
+function getMediaUrl() { return api.getMediaUrl.apply(null, arguments); }
+function reportUsage() { return api.reportUsage.apply(null, arguments); }
+function getProgramById() { return api.getProgramById.apply(null, arguments); }
+function getProgramsByCategoryId() { return api.getProgramsByCategoryId.apply(null, arguments); }
+function getProgramsBySeriesId() { return api.getProgramsBySeriesId.apply(null, arguments); }
+function search() { return api.search.apply(null, arguments); }
+function getNowPlayingRadioPrograms() { return api.getNowPlayingRadioPrograms.apply(null, arguments); }

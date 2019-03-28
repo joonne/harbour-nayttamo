@@ -12,6 +12,10 @@ Page {
             .then(function(broadcasts) {
                 listView.model = broadcasts
             })
+        YleApi.getNowPlayingRadioPrograms()
+            .then(function(programs) {
+                console.log(JSON.stringify(programs[0], null, 2));
+            })
     }
 
     onVisibleChanged: {
