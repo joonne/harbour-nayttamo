@@ -12,6 +12,7 @@ Page {
     property int offset: 0
     property int limit: 25
     property bool programsEnd: false
+    property string order: 'publication.starttime:desc'
 
     function appendProgramsToList(programs) {
         if (programs.length < limit) {
@@ -25,13 +26,13 @@ Page {
 
     function getPrograms() {
         if (category.id) {
-            YleApi.getProgramsByCategoryId(category.id, limit, offset)
+            YleApi.getProgramsByCategoryId(category.id, limit, offset, order)
                 .then(appendProgramsToList)
                 .catch(function(error) {
                     console.log('error', error)
                 })
         } else if (series.seriesId) {
-            YleApi.getProgramsBySeriesId(series.seriesId, limit, offset)
+            YleApi.getProgramsBySeriesId(series.seriesId, limit, offset, order)
                 .then(appendProgramsToList)
                 .catch(function(error) {
                     console.log('error', error)
