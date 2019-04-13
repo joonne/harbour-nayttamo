@@ -161,10 +161,6 @@
         <translation>Kategori</translation>
     </message>
     <message>
-        <source>Programs</source>
-        <translation>Program</translation>
-    </message>
-    <message>
         <source>Series</source>
         <translation>Serie</translation>
     </message>

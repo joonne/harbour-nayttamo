@@ -161,10 +161,6 @@
         <translation>Kategoria</translation>
     </message>
     <message>
-        <source>Programs</source>
-        <translation>Ohjelmat</translation>
-    </message>
-    <message>
         <source>Series</source>
         <translation>Sarja</translation>
     </message>

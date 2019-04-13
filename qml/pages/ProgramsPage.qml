@@ -56,7 +56,7 @@ Page {
         currentIndex: -1
         anchors.fill: parent
         header: PageHeader {
-            title: qsTr("Programs")
+            title: category.title ? category.title : series.title
         }
 
         onAtYEndChanged: {
