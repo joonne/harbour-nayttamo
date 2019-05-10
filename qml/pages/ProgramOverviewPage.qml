@@ -12,6 +12,9 @@ Page {
         if (visible) updateCover(qsTr("Program overview"), program.title, program.itemTitle)
     }
 
+    // The effective value will be restricted by ApplicationWindow.allowedOrientations
+    allowedOrientations: Orientation.All
+
     SilicaFlickable {
         id: listView
         anchors.fill: parent
