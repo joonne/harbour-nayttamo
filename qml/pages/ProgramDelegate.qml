@@ -6,7 +6,8 @@ import "../js/yleApi.js" as YleApi
 ListItem {
     id: listItem
     contentWidth: ListView.view.width
-    contentHeight: Theme.itemSizeLarge
+    //contentHeight: Theme.itemSizeLarge
+    contentHeight: listContainer.height
 
     menu: ContextMenu {
         MenuItem {
@@ -26,15 +27,18 @@ ListItem {
     }
 
     Item {
-        height: parent.height - 2 * Theme.paddingSmall
+        id: listContainer
+        //height: parent.height - 2 * Theme.paddingSmall
+        height: title.height + episode.height + time.height + 2*Theme.paddingSmall
         width: parent.width - 2 * Theme.paddingMedium
         anchors.centerIn: parent
 
         Rectangle {
             id: img
             color: "black"
-            height: parent.height
+            height: parent.height - 2*Theme.paddingSmall
             width: Math.ceil((height * 16) / 9)
+            y: parent.y + Theme.paddingSmall
             Image {
                 x: 0
                 y: 0
@@ -45,7 +49,10 @@ ListItem {
                         ? "http://images.cdn.yle.fi/image/upload/w_" + parent.width + ",h_" + parent.height + ",c_fit/" + modelData.image.id + ".jpg"
                         : ""
             }
-            anchors.left: parent.left
+            anchors {
+                left: parent.left
+                topMargin: Theme.paddingSmall
+            }
         }
 
         Label {
@@ -55,6 +62,7 @@ ListItem {
             font.bold: true
             font.pixelSize: Theme.fontSizeExtraSmall
             truncationMode: TruncationMode.Fade
+            y: parent.y + Theme.paddingSmall
             anchors {
                 left: img.right
                 right: parent.right
@@ -82,7 +90,7 @@ ListItem {
             text: modelData.startTime
             font.pixelSize: Theme.fontSizeTiny
             anchors {
-                bottom: img.bottom
+                top: episode.bottom
                 left: img.right
                 leftMargin: Theme.paddingMedium
             }
@@ -94,8 +102,8 @@ ListItem {
             font.pixelSize: Theme.fontSizeTiny
             visible: text !== ""
             anchors {
+                top: time.top
                 right: parent.right
-                baseline: time.baseline
             }
         }
     }
