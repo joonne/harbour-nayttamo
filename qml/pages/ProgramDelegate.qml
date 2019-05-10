@@ -53,6 +53,11 @@ ListItem {
                 left: parent.left
                 topMargin: Theme.paddingSmall
             }
+            Rectangle {
+                anchors.fill: parent
+                color: Theme.highlightBackgroundColor
+                opacity: listItem.highlighted ? Theme.highlightBackgroundOpacity : 0.0
+            }
         }
 
         Label {
