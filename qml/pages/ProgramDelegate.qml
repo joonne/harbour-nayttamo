@@ -6,8 +6,7 @@ import "../js/yleApi.js" as YleApi
 ListItem {
     id: listItem
     contentWidth: ListView.view.width
-    //contentHeight: Theme.itemSizeLarge
-    contentHeight: listContainer.height
+    contentHeight: listContainer.height + 2 * Theme.paddingSmall
 
     menu: ContextMenu {
         MenuItem {
@@ -28,17 +27,15 @@ ListItem {
 
     Item {
         id: listContainer
-        //height: parent.height - 2 * Theme.paddingSmall
-        height: title.height + episode.height + time.height + 2*Theme.paddingSmall
+        height: title.height + episode.height + time.height
         width: parent.width - 2 * Theme.paddingMedium
         anchors.centerIn: parent
 
         Rectangle {
             id: img
             color: "black"
-            height: parent.height - 2*Theme.paddingSmall
+            height: parent.height
             width: Math.ceil((height * 16) / 9)
-            y: parent.y + Theme.paddingSmall
             Image {
                 x: 0
                 y: 0
@@ -50,8 +47,8 @@ ListItem {
                         : ""
             }
             anchors {
+                top: parent.top
                 left: parent.left
-                topMargin: Theme.paddingSmall
             }
             Rectangle {
                 anchors.fill: parent
@@ -67,8 +64,8 @@ ListItem {
             font.bold: true
             font.pixelSize: Theme.fontSizeExtraSmall
             truncationMode: TruncationMode.Fade
-            y: parent.y + Theme.paddingSmall
             anchors {
+                top: parent.top
                 left: img.right
                 right: parent.right
                 leftMargin: Theme.paddingMedium

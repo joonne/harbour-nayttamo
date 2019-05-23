@@ -35,7 +35,7 @@ Page {
     // The effective value will be restricted by ApplicationWindow.allowedOrientations
     allowedOrientations: Orientation.All
 
-    onOrientationChanged: rowCount = Math.ceil(model.length / columnCount)
+    onOrientationChanged: rowCount = Math.ceil(gridView.model.length / columnCount)
 
     SilicaGridView {
         id: gridView
@@ -68,7 +68,6 @@ Page {
         cellWidth: page.width / columnCount
         cellHeight: page.width / columnCount / 16.0 * 9.0 + Theme.fontSizeMedium + Theme.paddingMedium
 
-        // Always, always remember to include the header itemi height...
         contentWidth: width
         contentHeight: gridView.headerItem.height + rowCount * cellHeight + offsetY
 
@@ -76,7 +75,7 @@ Page {
             id: listItem
             width: page.width / columnCount
             property int baseHeight: gridView.cellHeight
-            height: baseHeight + (index === curreIndex ? offsetY : 0.0)
+            height: baseHeight + (index === currIndex ? offsetY : 0.0)
             contentWidth: width
             contentHeight: height
 
