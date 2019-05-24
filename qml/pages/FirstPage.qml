@@ -90,10 +90,16 @@ Page {
                 source: modelData.image && modelData.image.id && modelData.image.available
                         ? "http://images.cdn.yle.fi/image/upload/w_" + imageSizeX + ",h_" + imageSizeY + ",c_fit/" + modelData.image.id + ".jpg"
                         : ""
-                Rectangle {
-                    anchors.fill: parent
-                    color: Theme.highlightBackgroundColor
-                    opacity: listItem.highlighted ? Theme.highlightBackgroundOpacity : 0.0
+                BusyIndicator {
+                    anchors.centerIn: parent
+                    size: BusyIndicatorSize.Medium
+                    running: parent.status !== Image.Ready && parent.status !== Image.Error
+                    visible: running
+                }
+                Image {
+                    anchors.centerIn: parent
+                    visible: parent.status === Image.Error
+                    source: "image://theme/icon-l-image"
                 }
             }
 

@@ -32,28 +32,31 @@ ListItem {
         anchors.centerIn: parent
 
         Rectangle {
+            anchors.fill: parent
+            color: Theme.highlightBackgroundColor
+            opacity: listItem.highlighted ? Theme.highlightBackgroundOpacity : 0.0
+        }
+
+        Image {
             id: img
-            color: "black"
             height: parent.height
             width: Math.ceil((height * 16) / 9)
+            opacity: 1.0
+            sourceSize.width: parent.width
+            sourceSize.height: parent.height
+            source: modelData.image && modelData.image.id && modelData.image.available
+                    ? "http://images.cdn.yle.fi/image/upload/w_" + parent.width + ",h_" + parent.height + ",c_fit/" + modelData.image.id + ".jpg"
+                    : ""
+            BusyIndicator {
+                anchors.centerIn: parent
+                size: BusyIndicatorSize.Medium
+                running: parent.status !== Image.Ready && parent.status !== Image.Error
+                visible: running
+            }
             Image {
-                x: 0
-                y: 0
-                opacity: 1.0
-                sourceSize.width: parent.width
-                sourceSize.height: parent.height
-                source: modelData.image && modelData.image.id && modelData.image.available
-                        ? "http://images.cdn.yle.fi/image/upload/w_" + parent.width + ",h_" + parent.height + ",c_fit/" + modelData.image.id + ".jpg"
-                        : ""
-            }
-            anchors {
-                top: parent.top
-                left: parent.left
-            }
-            Rectangle {
-                anchors.fill: parent
-                color: Theme.highlightBackgroundColor
-                opacity: listItem.highlighted ? Theme.highlightBackgroundOpacity : 0.0
+                anchors.centerIn: parent
+                visible: parent.status === Image.Error
+                source: "image://theme/icon-m-image"
             }
         }
 
