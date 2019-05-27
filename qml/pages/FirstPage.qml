@@ -6,16 +6,25 @@ import "../js/yleApi.js" as YleApi
 Page {
     id: page
 
+    function updateContent() {
+        if (playbackMode === "tv") {
+            YleApi.getCurrentBroadcasts()
+                .then(function(broadcasts) {
+                    listView.model = broadcasts
+                    console.log(JSON.stringify(broadcasts[0]))
+                })
+        } else if (playbackMode === "radio") {
+            YleApi.getNowPlayingRadioPrograms()
+                .then(function(programs) {
+                    listView.model = programs
+                    console.log(JSON.stringify(programs[0]))
+                })
+        }
+    }
+
     Component.onCompleted: {
         updateCover(qsTr("Current Broadcasts"), "", "")
-        YleApi.getCurrentBroadcasts()
-            .then(function(broadcasts) {
-                listView.model = broadcasts
-            })
-        YleApi.getNowPlayingRadioPrograms()
-            .then(function(programs) {
-                console.log(JSON.stringify(programs[0], null, 2));
-            })
+        updateContent()
     }
 
     onVisibleChanged: {
@@ -42,6 +51,13 @@ Page {
             MenuItem {
                 text: qsTr("Categories")
                 onClicked: pageStack.push(Qt.resolvedUrl("CategoriesPage.qml"))
+            }
+            MenuItem {
+                text: playbackMode === "tv" ? qsTr("Radio") : qsTr("Tv")
+                onClicked: {
+                    playbackMode = playbackMode === "tv" ? "radio" : "tv"
+                    updateContent()
+                }
             }
         }
 

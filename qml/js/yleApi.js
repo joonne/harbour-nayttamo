@@ -160,8 +160,9 @@ var api = (function(appId, appKey) {
          return foundSubtitles && foundSubtitles[0] && foundSubtitles[0].uri;
      }
 
-     function getMediaUrl(programId, mediaId) {
-         var url = apiUrl + mediaUrl + "&program_id=" + programId + "&media_id=" + mediaId + "&protocol=HLS";
+     function getMediaUrl(programId, mediaId, protocol) {
+         var url = [apiUrl, mediaUrl, "&program_id=", programId, "&media_id=", mediaId, "&protocol=", protocol || "HLS"].join("");
+
          return HTTP.get(url)
              .then(function(res) {
                  return {
@@ -233,6 +234,22 @@ var api = (function(appId, appKey) {
             .catch(handleError("getRadioServices", function() { return []; }));
     }
 
+    function getCurrentRadioBroadcasts() {
+        return getRadioServices()
+            .then(function(services) {
+                var url = apiUrl + currentBroadcastUrl + "&service=" + services.join(',') + "&start=0&end=0";
+                return HTTP.get(url)
+            })
+            .then(function(response) {
+                return response.data.map(function(res) {
+                    return res.content;
+                })
+            })
+            .then(filterAvailablePrograms)
+            .then(mapPrograms)
+            .catch(handleError("getCurrentRadioBroadcasts", function() { return []; }));
+    }
+
     function getNowPlayingRadioPrograms() {
         function getNowPlayingRadioProgramUrl(id) {
             return [apiUrl, "/programs/nowplaying/", id, ".json", "?", credentials].join("");
@@ -266,7 +283,9 @@ var api = (function(appId, appKey) {
                     var programId = program && program.service && program.service.id;
                     var mediaId = program && program.service && program.service.outlet && program.service.outlet.length && program.service.outlet[0] && program.service.outlet[0].media && program.service.outlet[0].media.id;
                     console.log(programId, mediaId);
+
                     if (!programId || !mediaId) return Promise.resolve(program);
+
                     return getMediaUrl(programId, mediaId)
                         .then(function(result) {
                             program.mediaUrl = result;
@@ -289,7 +308,7 @@ var api = (function(appId, appKey) {
          getProgramsByCategoryId: getProgramsByCategoryId,
          getProgramsBySeriesId: getProgramsBySeriesId,
          search: search,
-         getNowPlayingRadioPrograms: getNowPlayingRadioPrograms,
+         getCurrentRadioBroadcasts: getCurrentRadioBroadcasts,
      };
  })(appId, appKey);
 
@@ -303,4 +322,4 @@ function getProgramById() { return api.getProgramById.apply(null, arguments); }
 function getProgramsByCategoryId() { return api.getProgramsByCategoryId.apply(null, arguments); }
 function getProgramsBySeriesId() { return api.getProgramsBySeriesId.apply(null, arguments); }
 function search() { return api.search.apply(null, arguments); }
-function getNowPlayingRadioPrograms() { return api.getNowPlayingRadioPrograms.apply(null, arguments); }
+function getCurrentRadioBroadcasts() { return api.getCurrentRadioBroadcasts.apply(null, arguments); }

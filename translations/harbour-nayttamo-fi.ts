@@ -86,31 +86,39 @@
     <name>FirstPage</name>
     <message>
         <source>Current Broadcasts</source>
-        <translation>Menossa olevat ohjelmat</translation>
-    </message>
-    <message>
-        <source>Search</source>
-        <translation>Haku</translation>
-    </message>
-    <message>
-        <source>Categories</source>
-        <translation>Kategoriat</translation>
-    </message>
-    <message>
-        <source>Show program info</source>
-        <translation>Näytä ohjelman tiedot</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>About</source>
-        <translation>Tietoa</translation>
+        <translation type="unfinished">Tietoa</translation>
     </message>
     <message>
-        <source>No current broadcasts</source>
-        <translation>Ei tämänhetkisiä lähetyksiä</translation>
+        <source>Search</source>
+        <translation type="unfinished">Haku</translation>
+    </message>
+    <message>
+        <source>Categories</source>
+        <translation type="unfinished">Kategoriat</translation>
+    </message>
+    <message>
+        <source>Radio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tv</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show program info</source>
+        <translation type="unfinished">Näytä ohjelman tiedot</translation>
     </message>
     <message>
         <source>Show programs in series</source>
-        <translation>Näytä sarjan ohjelmat</translation>
+        <translation type="unfinished">Näytä sarjan ohjelmat</translation>
+    </message>
+    <message>
+        <source>No current broadcasts</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

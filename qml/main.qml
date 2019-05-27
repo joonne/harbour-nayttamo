@@ -10,6 +10,7 @@ ApplicationWindow
     property string coverMode: ""
     property string coverTitle: ""
     property string coverSubTitle: ""
+    property string playbackMode: "tv"
 
     function updateCover(newCoverMode, newCoverTitle, newCoverSubtitle) {
         coverMode = newCoverMode ? newCoverMode : ""

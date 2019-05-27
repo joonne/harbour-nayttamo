@@ -89,6 +89,10 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
@@ -97,19 +101,23 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Radio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tv</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Show program info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>About</source>
+        <source>Show programs in series</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>No current broadcasts</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Show programs in series</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
