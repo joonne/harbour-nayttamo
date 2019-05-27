@@ -11,13 +11,11 @@ Page {
             YleApi.getCurrentBroadcasts()
                 .then(function(broadcasts) {
                     listView.model = broadcasts
-                    console.log(JSON.stringify(broadcasts[0]))
                 })
         } else if (playbackMode === "radio") {
-            YleApi.getNowPlayingRadioPrograms()
+            YleApi.getCurrentRadioBroadcasts()
                 .then(function(programs) {
                     listView.model = programs
-                    console.log(JSON.stringify(programs[0]))
                 })
         }
     }
