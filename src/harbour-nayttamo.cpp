@@ -40,6 +40,7 @@
 
 #include <sailfishapp.h>
 #include "urldecrypt.h"
+#include "serializer.h"
 
 int main(int argc, char *argv[])
 {
@@ -54,6 +55,15 @@ int main(int argc, char *argv[])
     view->rootContext()->setContextProperty("appKey", APP_KEY);
 
     view->rootContext()->setContextProperty("urlDecrypt", &urlDecrypt);
+
+    auto worker = new QThread;
+
+    QScopedPointer<Serializer> serializer(new Serializer);
+    view->rootContext()->setContextProperty("serializer", serializer.data());
+    serializer->moveToThread(worker);
+
+    QObject::connect(worker, SIGNAL(finished()), worker, SLOT(deleteLater()));
+    worker->start();
 
     view->engine()->addImportPath(SailfishApp::pathTo("qml/components").toString());
     view->setSource(SailfishApp::pathTo("qml/main.qml"));

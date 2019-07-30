@@ -15,7 +15,8 @@ TARGET = harbour-nayttamo
 CONFIG += sailfishapp libcrypto
 
 SOURCES += src/harbour-nayttamo.cpp \
-    src/urldecrypt.cpp
+    src/urldecrypt.cpp \
+    src/serializer.cpp
 
 OTHER_FILES += \
     qml/cover/CoverPage.qml \
@@ -73,6 +74,7 @@ REQUIRED = $$find(DEFINES, "APP_ID") $$find(DEFINES, "APP_KEY") $$find(DEFINES, 
 }
 
 HEADERS += \
-    src/urldecrypt.h
+    src/urldecrypt.h \
+    src/serializer.h
 
 unix: PKGCONFIG += libcrypto
