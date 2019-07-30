@@ -33,6 +33,10 @@ Page {
         if (visible) updateCover(qsTr("Now playing"), program.title, program.itemTitle)
     }
 
+    Component.onDestruction: {
+        appWindow.insertStartedProgram({ id: program.id, progress: mediaPlayer.position })
+    }
+
     function initialize() {
         YleApi.getMediaUrl(program.id, program.mediaId)
             .then(function(response) {
@@ -41,6 +45,7 @@ Page {
                     subtitlesText.getSubtitles(subtitlesUrl)
                 }
                 mediaPlayer.source = response.url
+                if (appWindow.state.startedPrograms[program.id]) mediaPlayer.seek(appWindow.state.startedPrograms[program.id])
                 mediaPlayer.play()
                 YleApi.reportUsage(program.id, program.mediaId)
             })
