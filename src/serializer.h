@@ -21,6 +21,7 @@ private:
     bool writeState() const;
     QString getPath() const;
     void ensureDir() const;
+    QJsonObject getInitialState() const;
 
     QJsonObject m_state;
 };

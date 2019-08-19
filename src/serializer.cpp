@@ -12,7 +12,6 @@ Serializer::Serializer(QObject *parent) : QObject(parent)
 {
     this->ensureDir();
     this->readState();
-    qDebug() << this->m_state;
 }
 
 Serializer::~Serializer()
@@ -20,16 +19,25 @@ Serializer::~Serializer()
     this->writeState();
 }
 
+QJsonObject Serializer::getInitialState() const
+{
+    return QJsonObject
+    {
+        {"startedPrograms", QJsonObject()}
+    };
+}
+
 bool Serializer::readState()
 {
     QFile file(this->getPath());
 
     if (!file.open(QIODevice::ReadWrite)) {
-        this->m_state = QJsonObject();
         return false;
     }
 
-    this->m_state = (QJsonDocument::fromJson(file.readAll())).object();
+    auto json = (QJsonDocument::fromJson(file.readAll())).object();
+
+    this->m_state = json.empty() ? this->getInitialState() : json;
 
     return true;
 }

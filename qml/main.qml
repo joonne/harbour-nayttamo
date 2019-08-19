@@ -12,24 +12,47 @@ ApplicationWindow
     property string coverTitle: ""
     property string coverSubTitle: ""
 
-    property var state: ({
-                             startedPrograms: {}
-                         })
-    onStateChanged: serializer.setState(state)
+    property var state: null
+
+    onStateChanged: {
+        if (state === null) {
+            console.log('initialization, do not set the state')
+            return
+        }
+        serializer.setState(state)
+    }
 
     Component.onCompleted: {
         state = serializer.getState()
     }
 
-    function setState(obj, path, value) {
-        if (!Array.isArray(path)) path = path.split('.')
-        if (path.length === 1) return obj[path[0]] = value
-        if (!obj[path[0]]) obj[path[0]] = {}
-        return setState(obj[path[0]], path.slice(1), value)
+    function setState(path, value) {
+        function setStateRecursive(obj, path, value) {
+            if (!Array.isArray(path)) {
+                path = path.split('.')
+            }
+
+            if (path.length === 1) {
+                obj[path[0]] = value
+                return
+            }
+
+            if (!obj[path[0]]) {
+                obj[path[0]] = {}
+            }
+
+            return setStateRecursive(obj[path[0]], path.slice(1), value)
+        }
+
+        var newState = JSON.parse(JSON.stringify(state))
+        console.log('start', JSON.stringify(newState))
+        setStateRecursive(newState, path, value)
+        console.log("done", JSON.stringify(newState))
+        state = newState
     }
 
     function insertStartedProgram(program) {
-        setState(state, 'startedPrograms.' + program.id, program.progress)
+        setState('startedPrograms.' + program.id, program.progress)
     }
 
     function updateCover(newCoverMode, newCoverTitle, newCoverSubtitle) {
@@ -46,4 +69,3 @@ ApplicationWindow
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
     allowedOrientations: defaultAllowedOrientations
 }
-
