@@ -31,7 +31,8 @@ bool Serializer::readState()
 {
     QFile file(this->getPath());
 
-    if (!file.open(QIODevice::ReadWrite)) {
+    if (!file.open(QIODevice::ReadWrite))
+    {
         return false;
     }
 
@@ -46,7 +47,8 @@ bool Serializer::writeState() const
 {
     QFile file(this->getPath());
 
-    if (!file.open(QIODevice::ReadWrite)) {
+    if (!file.open(QIODevice::ReadWrite))
+    {
         return false;
     }
 
@@ -70,7 +72,8 @@ void Serializer::ensureDir() const
 {
     QDir dir(QStandardPaths::writableLocation(QStandardPaths::DataLocation));
 
-    if (!dir.exists()) {
+    if (!dir.exists())
+    {
         dir.mkpath(".");
     }
 }
