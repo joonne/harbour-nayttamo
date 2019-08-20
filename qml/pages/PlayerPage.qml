@@ -127,6 +127,10 @@ Page {
                         if (subtitlesUrl && subtitlesText) {
                             subtitlesText.getSubtitles(subtitlesUrl)
                         }
+
+                        if (mediaPlayer.playbackState === MediaPlayer.PausedState) {
+                            appWindow.insertStartedProgram({ id: program.id, progress: mediaPlayer.position })
+                        }
                     }
                 }
             }
