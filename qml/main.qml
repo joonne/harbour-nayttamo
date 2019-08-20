@@ -19,7 +19,7 @@ ApplicationWindow
             console.log('initialization, do not set the state')
             return
         }
-        serializer.setState(state)
+        serializer && serializer.setState(state)
     }
 
     Component.onCompleted: {
