@@ -41,9 +41,24 @@ Requires:
 # All installed files
 Files:
   - '%{_bindir}'
-  - '%{_datadir}/%{name}'
+  - '%{_datadir}/%{name}/qml'
   - '%{_datadir}/applications/%{name}.desktop'
   - '%{_datadir}/icons/hicolor/*/apps/%{name}.png'
 
 # For more information about yaml and what's supported in Sailfish OS
 # build system, please see https://wiki.merproject.org/wiki/Spectacle
+
+SubPackages:
+- Name: test
+  Summary: Tests for harbour-nayttamo
+  Group: Qt/Qt
+  Description: |-
+    Tests package for harbour-nayttamo
+  AutoDepend: true
+  PkgConfigBR:
+  - Qt5QuickTest
+  Requires:
+  - qt5-qtdeclarative-import-qttest
+  Files:
+    - '%{_bindir}/tst-harbour-nayttamo'
+    - '%{_datadir}/tst-harbour-nayttamo/*.qml'

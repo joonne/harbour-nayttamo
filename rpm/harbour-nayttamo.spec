@@ -32,6 +32,16 @@ BuildRequires:  desktop-file-utils
 Native YLE Areena application for Sailfish OS
 
 
+%package test
+Summary:    Tests for harbour-nayttamo
+Group:      Qt/Qt
+Requires:   %{name} = %{version}-%{release}
+Requires:   qt5-qtdeclarative-import-qttest
+BuildRequires:  pkgconfig(Qt5QuickTest)
+
+%description test
+Tests package for harbour-nayttamo
+
 %prep
 %setup -q -n %{name}-%{version}
 
@@ -67,8 +77,15 @@ desktop-file-install --delete-original       \
 %files
 %defattr(-,root,root,-)
 %{_bindir}
-%{_datadir}/%{name}
+%{_datadir}/%{name}/qml
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
 # >> files
 # << files
+
+%files test
+%defattr(-,root,root,-)
+%{_bindir}/tst-harbour-nayttamo
+%{_datadir}/tst-harbour-nayttamo/*.qml
+# >> files test
+# << files test
