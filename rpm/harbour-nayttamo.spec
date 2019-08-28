@@ -76,7 +76,7 @@ desktop-file-install --delete-original       \
 
 %files
 %defattr(-,root,root,-)
-%{_bindir}
+%{_bindir}/%{name}
 %{_datadir}/%{name}/qml
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
@@ -87,5 +87,6 @@ desktop-file-install --delete-original       \
 %defattr(-,root,root,-)
 %{_bindir}/tst-harbour-nayttamo
 %{_datadir}/tst-harbour-nayttamo/*.qml
+%attr(0755,-,-) %{_datadir}/tst-harbour-nayttamo/*.sh
 # >> files test
 # << files test

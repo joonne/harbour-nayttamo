@@ -1,6 +1,8 @@
 TEMPLATE = app
+
 TARGET = tst-harbour-nayttamo
-CONFIG += warn_on qmltestcase
+
+CONFIG += qmltestcase
 
 TARGETPATH = /usr/bin
 target.path = $$TARGETPATH
@@ -8,13 +10,19 @@ target.path = $$TARGETPATH
 DEPLOYMENT_PATH = /usr/share/$$TARGET
 qml.path = $$DEPLOYMENT_PATH
 
-DEFINES += QUICK_TEST_SOURCE_DIR=\"\\\"\"$${DEPLOYMENT_PATH}/\"\\\"\"
+extra.path = $$DEPLOYMENT_PATH
+extra.files = run_tests_on_device.sh
+
+DEFINES += DEPLOYMENT_PATH=\"\\\"\"$${DEPLOYMENT_PATH}/\"\\\"\"
 
 SOURCES += main.cpp
 
-INSTALLS += target qml
+HEADERS +=
+
+INSTALLS += target qml extra
 
 qml.files = *.qml
 
 OTHER_FILES += \
     tst_test.qml
+    

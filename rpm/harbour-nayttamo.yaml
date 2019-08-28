@@ -40,7 +40,7 @@ Requires:
 
 # All installed files
 Files:
-  - '%{_bindir}'
+  - '%{_bindir}/%{name}'
   - '%{_datadir}/%{name}/qml'
   - '%{_datadir}/applications/%{name}.desktop'
   - '%{_datadir}/icons/hicolor/*/apps/%{name}.png'
@@ -62,3 +62,4 @@ SubPackages:
   Files:
     - '%{_bindir}/tst-harbour-nayttamo'
     - '%{_datadir}/tst-harbour-nayttamo/*.qml'
+    - '%attr(0755,-,-) %{_datadir}/tst-harbour-nayttamo/*.sh'

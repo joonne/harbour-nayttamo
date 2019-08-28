@@ -1,6 +1,9 @@
 import QtQuick 2.3
 import QtTest 1.0
 
+//import "../src/qml/pages"
+import "../harbour-nayttamo/qml/pages"
+
 TestCase {
     name: "MathTests"
 
