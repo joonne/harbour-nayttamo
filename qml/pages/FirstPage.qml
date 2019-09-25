@@ -15,6 +15,10 @@ Page {
         // This prevents image reload on orientation change
         imageSizeX = Math.min(width, height)
         imageSizeY = Math.floor(imageSizeX / 16.0 * 9.0)
+        updateBroadcasts()
+    }
+
+    function updateBroadcasts() {
         gridView.model = []
         updateCover(qsTr("Current Broadcasts"), "", "")
         YleApi.getCurrentBroadcasts()
@@ -49,6 +53,10 @@ Page {
             MenuItem {
                 text: qsTr("About")
                 onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
+            }
+            MenuItem {
+                text: qsTr("Refresh")
+                onClicked: updateBroadcasts()
             }
             MenuItem {
                 text: qsTr("Search")
