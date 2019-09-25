@@ -31,12 +31,6 @@ ListItem {
         width: parent.width - 2 * Theme.paddingMedium
         anchors.centerIn: parent
 
-        Rectangle {
-            anchors.fill: parent
-            color: Theme.highlightBackgroundColor
-            opacity: listItem.highlighted ? Theme.highlightBackgroundOpacity : 0.0
-        }
-
         Image {
             id: img
             height: parent.height
