@@ -6,7 +6,7 @@ import "../js/yleApi.js" as YleApi
 ListItem {
     id: listItem
     contentWidth: ListView.view.width
-    contentHeight: Theme.itemSizeLarge
+    contentHeight: listContainer.height + 2 * Theme.paddingSmall
 
     menu: ContextMenu {
         MenuItem {
@@ -26,26 +26,32 @@ ListItem {
     }
 
     Item {
-        height: parent.height - 2 * Theme.paddingSmall
+        id: listContainer
+        height: title.height + episode.height + time.height
         width: parent.width - 2 * Theme.paddingMedium
         anchors.centerIn: parent
 
         Rectangle {
+            anchors.fill: parent
+            color: Theme.highlightBackgroundColor
+            opacity: listItem.highlighted ? Theme.highlightBackgroundOpacity : 0.0
+        }
+
+        Image {
             id: img
-            color: "black"
             height: parent.height
             width: Math.ceil((height * 16) / 9)
+            opacity: 1.0
+            sourceSize.width: parent.width
+            sourceSize.height: parent.height
+            source: modelData.image && modelData.image.id && modelData.image.available
+                    ? "http://images.cdn.yle.fi/image/upload/w_" + parent.width + ",h_" + parent.height + ",c_fit/" + modelData.image.id + ".jpg"
+                    : ""
             Image {
-                x: 0
-                y: 0
-                opacity: 1.0
-                sourceSize.width: parent.width
-                sourceSize.height: parent.height
-                source: modelData.image && modelData.image.id && modelData.image.available
-                        ? "http://images.cdn.yle.fi/image/upload/w_" + parent.width + ",h_" + parent.height + ",c_fit/" + modelData.image.id + ".jpg"
-                        : ""
+                anchors.centerIn: parent
+                visible: parent.status === Image.Error
+                source: "image://theme/icon-m-image"
             }
-            anchors.left: parent.left
         }
 
         Label {
@@ -56,6 +62,7 @@ ListItem {
             font.pixelSize: Theme.fontSizeExtraSmall
             truncationMode: TruncationMode.Fade
             anchors {
+                top: parent.top
                 left: img.right
                 right: parent.right
                 leftMargin: Theme.paddingMedium
@@ -82,7 +89,7 @@ ListItem {
             text: modelData.startTime
             font.pixelSize: Theme.fontSizeTiny
             anchors {
-                bottom: img.bottom
+                top: episode.bottom
                 left: img.right
                 leftMargin: Theme.paddingMedium
             }
@@ -94,8 +101,8 @@ ListItem {
             font.pixelSize: Theme.fontSizeTiny
             visible: text !== ""
             anchors {
+                top: time.top
                 right: parent.right
-                baseline: time.baseline
             }
         }
     }
