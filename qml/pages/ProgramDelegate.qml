@@ -47,6 +47,12 @@ ListItem {
             source: modelData.image && modelData.image.id && modelData.image.available
                     ? "http://images.cdn.yle.fi/image/upload/w_" + parent.width + ",h_" + parent.height + ",c_fit/" + modelData.image.id + ".jpg"
                     : ""
+            BusyIndicator {
+                anchors.centerIn: parent
+                size: BusyIndicatorSize.Medium
+                running: parent.status !== Image.Ready && parent.status !== Image.Error
+                visible: running
+            }
             Image {
                 anchors.centerIn: parent
                 visible: parent.status === Image.Error
