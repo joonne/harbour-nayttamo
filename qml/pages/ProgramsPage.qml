@@ -66,7 +66,9 @@ Page {
             }
         }
 
-        delegate: ProgramDelegate {}
+        delegate: ProgramDelegate {
+            showSeriesMenuItem: false
+        }
 
         VerticalScrollDecorator {}
     }
