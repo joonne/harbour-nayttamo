@@ -161,10 +161,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Programs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Series</source>
         <translation type="unfinished"></translation>
     </message>

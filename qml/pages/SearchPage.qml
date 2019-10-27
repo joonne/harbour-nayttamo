@@ -8,6 +8,7 @@ Page {
     property int offset: 0
     property int limit: 25
     property bool programsEnd: false
+    property string order: 'publication.starttime:desc'
 
     // The effective value will be restricted by ApplicationWindow.allowedOrientations
     allowedOrientations: Orientation.All
@@ -21,7 +22,7 @@ Page {
 
     function search(text) {
         updateCover(qsTr("Search"), searchField.text, "")
-        YleApi.search(searchField.text, limit, offset)
+        YleApi.search(searchField.text, limit, offset, order)
             .then(function(programs) {
                 if (programs.length < limit) {
                     programsEnd = true

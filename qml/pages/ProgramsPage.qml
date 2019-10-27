@@ -12,6 +12,7 @@ Page {
     property int offset: 0
     property int limit: 25
     property bool programsEnd: false
+    property string order: 'publication.starttime:desc'
 
     function appendProgramsToList(programs) {
         if (programs.length < limit) {
@@ -25,13 +26,13 @@ Page {
 
     function getPrograms() {
         if (category.id) {
-            YleApi.getProgramsByCategoryId(category.id, limit, offset)
+            YleApi.getProgramsByCategoryId(category.id, limit, offset, order)
                 .then(appendProgramsToList)
                 .catch(function(error) {
                     console.log('error', error)
                 })
         } else if (series.seriesId) {
-            YleApi.getProgramsBySeriesId(series.seriesId, limit, offset)
+            YleApi.getProgramsBySeriesId(series.seriesId, limit, offset, order)
                 .then(appendProgramsToList)
                 .catch(function(error) {
                     console.log('error', error)
@@ -56,7 +57,7 @@ Page {
         currentIndex: -1
         anchors.fill: parent
         header: PageHeader {
-            title: qsTr("Programs")
+            title: category.title ? category.title : series.title
         }
 
         onAtYEndChanged: {
@@ -66,7 +67,9 @@ Page {
             }
         }
 
-        delegate: ProgramDelegate {}
+        delegate: ProgramDelegate {
+            isSeriesList: series.title ? true : false
+        }
 
         VerticalScrollDecorator {}
     }

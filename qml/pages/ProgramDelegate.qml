@@ -7,6 +7,7 @@ ListItem {
     id: listItem
     contentWidth: ListView.view.width
     contentHeight: Theme.itemSizeLarge
+    property bool isSeriesList: false
 
     menu: ContextMenu {
         MenuItem {
@@ -16,7 +17,7 @@ ListItem {
                                       })
         }
         MenuItem {
-            visible: Boolean(modelData.seriesId)
+            visible: !isSeriesList && Boolean(modelData.seriesId)
             text: qsTr("Show programs in series")
 
             onClicked: pageStack.push(Qt.resolvedUrl("ProgramsPage.qml"), {
