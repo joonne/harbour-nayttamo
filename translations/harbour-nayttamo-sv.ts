@@ -86,31 +86,39 @@
     <name>FirstPage</name>
     <message>
         <source>Current Broadcasts</source>
-        <translation>Nu spelas</translation>
-    </message>
-    <message>
-        <source>Search</source>
-        <translation>Sök</translation>
-    </message>
-    <message>
-        <source>Categories</source>
-        <translation>Kategorier</translation>
-    </message>
-    <message>
-        <source>Show program info</source>
-        <translation>Visa programinformation</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>About</source>
-        <translation>Info</translation>
+        <translation type="unfinished">Info</translation>
     </message>
     <message>
-        <source>No current broadcasts</source>
-        <translation>Nu spelas ingenting</translation>
+        <source>Search</source>
+        <translation type="unfinished">Sök</translation>
+    </message>
+    <message>
+        <source>Categories</source>
+        <translation type="unfinished">Kategorier</translation>
+    </message>
+    <message>
+        <source>Radio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tv</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show program info</source>
+        <translation type="unfinished">Visa programinformation</translation>
     </message>
     <message>
         <source>Show programs in series</source>
-        <translation>Visa program i serie</translation>
+        <translation type="unfinished">Visa program i serie</translation>
+    </message>
+    <message>
+        <source>No current broadcasts</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

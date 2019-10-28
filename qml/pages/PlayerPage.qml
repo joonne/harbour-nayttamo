@@ -34,12 +34,14 @@ Page {
     }
 
     function initialize() {
-        YleApi.getMediaUrl(program.id, program.mediaId)
+        var protocol =  playbackMode === "radio" ? "PMD" : "HLS"
+        YleApi.getMediaUrl(program.id, program.mediaId, protocol)
             .then(function(response) {
                 if (response.subtitlesUrl && subtitlesText) {
                     subtitlesUrl = response.subtitlesUrl
                     subtitlesText.getSubtitles(subtitlesUrl)
                 }
+                console.log("playbackMode", playbackMode, JSON.stringify(response))
                 mediaPlayer.source = response.url
                 mediaPlayer.play()
                 YleApi.reportUsage(program.id, program.mediaId)
