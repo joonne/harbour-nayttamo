@@ -75,11 +75,6 @@ Page {
         }
     }
 
-    ViewPlaceholder {
-        enabled: listView.count === 0
-        text: qsTr("Here will be stuff when you search for something")
-    }
-
     SilicaListView {
         id: listView
         anchors.top: searchField.bottom
@@ -100,6 +95,11 @@ Page {
 
         VerticalScrollDecorator {
             id: decorator
+        }
+
+        ViewPlaceholder {
+            enabled: listView.count === 0
+            text: qsTr("Here will be stuff when you search for something")
         }
     }
 }

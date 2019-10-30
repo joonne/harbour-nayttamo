@@ -17,14 +17,29 @@ CONFIG += sailfishapp libcrypto
 SOURCES += src/harbour-nayttamo.cpp \
     src/urldecrypt.cpp
 
-OTHER_FILES += \
-    qml/cover/CoverPage.qml \
-    qml/pages/FirstPage.qml \
+DISTFILES += \
     rpm/harbour-nayttamo.changes.in \
     rpm/harbour-nayttamo.spec \
     rpm/harbour-nayttamo.yaml \
     translations/*.ts \
-    harbour-nayttamo.desktop
+    harbour-nayttamo.desktop \
+    qml/js/checkSubtitles.js \
+    qml/js/getSubtitles.js \
+    qml/js/http.js \
+    qml/js/promise.js \
+    qml/js/timeout.js \
+    qml/js/yleApi.js \
+    qml/main.qml \
+    qml/pages/AboutPage.qml \
+    qml/pages/CategoriesPage.qml \
+    qml/cover/CoverPage.qml \
+    qml/pages/FirstPage.qml \
+    qml/pages/PlayerPage.qml \
+    qml/pages/ProgramDelegate.qml \
+    qml/pages/ProgramOverviewPage.qml \
+    qml/pages/ProgramsPage.qml \
+    qml/pages/SearchPage.qml \
+    qml/pages/SubtitlesItem.qml
 
 SAILFISHAPP_ICONS = 86x86 108x108 128x128 172x172 256x256
 
@@ -38,19 +53,6 @@ CONFIG += sailfishapp_i18n
 # modify the localized app name in the the .desktop file.
 TRANSLATIONS += translations/harbour-nayttamo-fi.ts \
     translations/harbour-nayttamo-sv.ts
-
-DISTFILES += \
-    qml/js/http.js \
-    qml/js/promise.js \
-    qml/js/timeout.js \
-    qml/js/yleApi.js \
-    qml/pages/CategoriesPage.qml \
-    qml/pages/ProgramsPage.qml \
-    qml/pages/PlayerPage.qml \
-    qml/pages/SearchPage.qml \
-    qml/pages/ProgramOverviewPage.qml \
-    qml/main.qml \
-    qml/pages/AboutPage.qml
 
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 DEFINES += APP_BUILDNUM=\\\"$$RELEASE\\\"

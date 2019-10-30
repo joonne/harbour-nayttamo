@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import QtMultimedia 5.5
+import Nemo.KeepAlive 1.2
 
 import "../js/yleApi.js" as YleApi
 
@@ -53,8 +54,8 @@ Page {
     // The effective value will be restricted by ApplicationWindow.allowedOrientations
     allowedOrientations: Orientation.All
 
-    ScreenBlank {
-        enabled: mediaPlayer.playbackState === MediaPlayer.PlayingState
+    DisplayBlanking {
+        preventBlanking: mediaPlayer.playbackState === MediaPlayer.PlayingState
     }
 
     Timer {
