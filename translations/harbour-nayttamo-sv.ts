@@ -112,6 +112,10 @@
         <source>Show programs in series</source>
         <translation>Visa program i serie</translation>
     </message>
+    <message>
+        <source>Refresh</source>
+        <translation>Uppdatera</translation>
+    </message>
 </context>
 <context>
     <name>PlayerPage</name>
@@ -159,10 +163,6 @@
     <message>
         <source>Category</source>
         <translation>Kategori</translation>
-    </message>
-    <message>
-        <source>Programs</source>
-        <translation>Program</translation>
     </message>
     <message>
         <source>Series</source>

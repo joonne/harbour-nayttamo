@@ -9,7 +9,7 @@ var api = (function(appId, appKey) {
      var credentials = "app_id=" + appId + "&app_key=" + appKey;
 
      var programsUrl = "/programs/items.json?" + credentials + "&contentprotection=22-0,22-1&availability=ondemand&mediaobject=video";
-     var categoriesUrl = "/programs/categories.json?" + credentials;
+     var categoriesUrl = "/programs/categories.json?" + credentials + '&scheme=areena-content-classification';
      var programDetailsUrl = "/programs/items/1-820561.json" + "?" + credentials;
      var mediaUrl = "/media/playouts.json?"+ credentials;
      var trackingUrl = "/tracking/streamstart?" + credentials;
@@ -118,16 +118,16 @@ var api = (function(appId, appKey) {
              .catch(handleError("getProgramById", function() { return {}; }));
      }
 
-     function getProgramsByCategoryId(categoryId, limit, offset) {
-         var url = apiUrl + programsUrl + '&category=' + categoryId + '&offset=' + offset + '&limit=' + limit;
+     function getProgramsByCategoryId(categoryId, limit, offset, order) {
+         var url = apiUrl + programsUrl + '&category=' + categoryId + '&offset=' + offset + '&limit=' + limit + '&order=' + order;
          return HTTP.get(url)
              .then(function(response) { return response.data; })
              .then(filterAvailablePrograms)
              .then(mapPrograms);
      }
 
-     function getProgramsBySeriesId(seriesId, limit, offset) {
-         var url = apiUrl + programsUrl + '&series=' + seriesId + '&offset=' + offset + '&limit=' + limit;
+     function getProgramsBySeriesId(seriesId, limit, offset, order) {
+         var url = apiUrl + programsUrl + '&series=' + seriesId + '&offset=' + offset + '&limit=' + limit + '&order=' + order;
          return HTTP.get(url)
              .then(function(response) { return response.data; })
              .then(filterAvailablePrograms)
@@ -171,8 +171,8 @@ var api = (function(appId, appKey) {
              });
      }
 
-     function search(text, limit, offset) {
-         var url = apiUrl + programsUrl + '&q=' + text + '&offset=' + offset + '&limit=' + limit;
+     function search(text, limit, offset, order) {
+         var url = apiUrl + programsUrl + '&q=' + text + '&offset=' + offset + '&limit=' + limit + '&order=' + order;
          return HTTP.get(url)
              .then(function(response) { return response.data; })
              .then(filterAvailablePrograms)

@@ -112,6 +112,10 @@
         <source>Show programs in series</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PlayerPage</name>
@@ -158,10 +162,6 @@
     <name>ProgramsPage</name>
     <message>
         <source>Category</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Programs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

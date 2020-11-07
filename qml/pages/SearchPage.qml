@@ -8,6 +8,7 @@ Page {
     property int offset: 0
     property int limit: 25
     property bool programsEnd: false
+    property string order: 'publication.starttime:desc'
 
     // The effective value will be restricted by ApplicationWindow.allowedOrientations
     allowedOrientations: Orientation.All
@@ -21,7 +22,7 @@ Page {
 
     function search(text) {
         updateCover(qsTr("Search"), searchField.text, "")
-        YleApi.search(searchField.text, limit, offset)
+        YleApi.search(searchField.text, limit, offset, order)
             .then(function(programs) {
                 if (programs.length < limit) {
                     programsEnd = true
@@ -74,11 +75,6 @@ Page {
         }
     }
 
-    ViewPlaceholder {
-        enabled: listView.count === 0
-        text: qsTr("Here will be stuff when you search for something")
-    }
-
     SilicaListView {
         id: listView
         anchors.top: searchField.bottom
@@ -99,6 +95,11 @@ Page {
 
         VerticalScrollDecorator {
             id: decorator
+        }
+
+        ViewPlaceholder {
+            enabled: listView.count === 0
+            text: qsTr("Here will be stuff when you search for something")
         }
     }
 }
