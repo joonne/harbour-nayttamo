@@ -15,9 +15,11 @@ TARGET = harbour-nayttamo
 CONFIG += sailfishapp libcrypto
 
 SOURCES += src/harbour-nayttamo.cpp \
-    src/urldecrypt.cpp
+    src/urldecrypt.cpp \
+    src/serializer.cpp
 
 DISTFILES += \
+    qml/components/ContinueWatchingDialog.qml \
     rpm/harbour-nayttamo.changes.in \
     rpm/harbour-nayttamo.spec \
     rpm/harbour-nayttamo.yaml \
@@ -76,6 +78,7 @@ REQUIRED = $$find(DEFINES, "APP_ID") $$find(DEFINES, "APP_KEY") $$find(DEFINES, 
 }
 
 HEADERS += \
-    src/urldecrypt.h
+    src/urldecrypt.h \
+    src/serializer.h
 
 unix: PKGCONFIG += libcrypto
