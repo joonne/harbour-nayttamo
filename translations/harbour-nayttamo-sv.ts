@@ -112,6 +112,10 @@
         <source>Show programs in series</source>
         <translation>Visa program i serie</translation>
     </message>
+    <message>
+        <source>Refresh</source>
+        <translation>Uppdatera</translation>
+    </message>
 </context>
 <context>
     <name>PlayerPage</name>
