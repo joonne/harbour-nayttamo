@@ -19,6 +19,7 @@ SOURCES += src/harbour-nayttamo.cpp \
     src/serializer.cpp
 
 DISTFILES += \
+    qml/components/ContinueWatchingDialog.qml \
     rpm/harbour-nayttamo.changes.in \
     rpm/harbour-nayttamo.spec \
     rpm/harbour-nayttamo.yaml \

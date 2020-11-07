@@ -40,20 +40,36 @@ Page {
 
     function initialize() {
         YleApi.getMediaUrl(program.id, program.mediaId)
-            .then(function(response) {
-                if (response.subtitlesUrl && subtitlesText) {
-                    subtitlesUrl = response.subtitlesUrl
-                    subtitlesText.getSubtitles(subtitlesUrl)
-                }
-                mediaPlayer.source = response.url
-                if (appWindow.state.startedPrograms[program.id]) mediaPlayer.seek(appWindow.state.startedPrograms[program.id])
+        .then(function(response) {
+            if (response.subtitlesUrl && subtitlesText) {
+                subtitlesUrl = response.subtitlesUrl
+                subtitlesText.getSubtitles(subtitlesUrl)
+            }
+            mediaPlayer.source = response.url
+            if (appWindow.state.startedPrograms[program.id]) {
+                var position = appWindow.state.startedPrograms[program.id]
+                var dialog = pageStack.push(Qt.resolvedUrl("ContinueWatchingDialog.qml"),
+                                            {"name": program.name, "position": position })
+                dialog.accepted.connect(function() {
+                    mediaPlayer.seek(position)
+                    mediaPlayer.play()
+                    YleApi.reportUsage(program.id, program.mediaId)
+                })
+
+                dialog.rejected.connect(function() {
+                    mediaPlayer.play()
+                    YleApi.reportUsage(program.id, program.mediaId)
+                })
+
+            } else {
                 mediaPlayer.play()
                 YleApi.reportUsage(program.id, program.mediaId)
-            })
-            .catch(function(error) {
-                console.log("mediaUrlError", JSON.stringify(error))
-                errorState = true;
-            })
+            }
+        })
+        .catch(function(error) {
+            console.log("mediaUrlError", JSON.stringify(error))
+            errorState = true;
+        })
     }
 
     // The effective value will be restricted by ApplicationWindow.allowedOrientations
@@ -83,6 +99,7 @@ Page {
         source: mediaPlayer
 
         Component.onCompleted: initialize()
+
         Component.onDestruction: {
             mediaPlayer.stop()
             mediaPlayer.source = ""
@@ -122,8 +139,8 @@ Page {
                     anchors.fill: parent
                     onClicked: {
                         mediaPlayer.playbackState === MediaPlayer.PlayingState
-                            ? mediaPlayer.pause()
-                            : mediaPlayer.play()
+                                ? mediaPlayer.pause()
+                                : mediaPlayer.play()
 
                         if (subtitlesUrl && subtitlesText) {
                             subtitlesText.getSubtitles(subtitlesUrl)
